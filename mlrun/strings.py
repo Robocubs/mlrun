@@ -5,6 +5,10 @@ These strings are used by MLRun to ensure that all of the text shown is correct.
 """
 mlrun_started: str = "Welcome to MLRun! Starting up..."
 
+validation_started: str = "Validating configuration schema..."
+validation_successful: str = "Configuration is valid."
+validation_error: str = "Configuration is invalid. The validator says this:"
+
 debugging_disabled: str = "Debugging is not enabled."
 debugging_logs_only: str = "Log-based debugging is enabled."
 debugging_show_only: str = "Visualization debugging is enabled. Performance will be dramatically reduced."

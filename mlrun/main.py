@@ -4,17 +4,25 @@
 This module loads a model from a file, imports it into memory,
 and executes it with a camera input.
 """
+# Global modules
 import json
 import logging
-from logging import Logger
 import os
 import sys
-from typing import Dict
 import pkg_resources
 
+# Installed modules
 import coloredlogs
+import jsonschema
 
-from mlrun import strings
+# Type hinting only
+from logging import Logger
+from typing import Dict
+
+# Local imports
+from jsonschema import ValidationError
+
+from mlrun import strings, schema
 
 # Load configuration file
 with open("config.json") as fp:
@@ -42,6 +50,18 @@ pipelineEnabled = True
 # Start logging below, because the logger isn't loaded before this point. #
 ###########################################################################
 l["root"].debug(strings.mlrun_started)
+
+# Verify configuration file
+try:
+    l["root"].info(strings.validation_started)
+    jsonschema.validate(config, schema=schema.schema)
+except ValidationError as e:
+    l["root"].error(strings.validation_error)
+    l["root"].error(str(e))
+
+l["root"].info(strings.validation_successful)
+
+# If configured to do so, enable debugging.
 if (not config["debugging"]["logs"]) and (not config["debugging"]["show"]):
     l["root"].info(strings.debugging_disabled)
 elif config["debugging"]["logs"] and (not config["debugging"]["show"]):
