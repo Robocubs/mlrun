@@ -8,7 +8,7 @@ schema: dict = {
     "$id": "http://example.com/root.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {},
-    "required": ["tensorflow", "logging", "camera", "networktables", "debugging"],
+    "required": ["tensorflow", "camera", "networktables", "debugging"],
     "title": "The MLRun configuration schema.",
     "type": "object",
     "properties": {
@@ -21,7 +21,7 @@ schema: dict = {
                 "id": {
                     "$id": "#/properties/camera/properties/id",
                     "default": 0,
-                    "examples": range(0, 4),
+                    "examples": list(range(0, 4)),
                     "title": "The camera ID that OpenCV should be searching for.",
                     "type": "integer"
                 },
@@ -42,7 +42,7 @@ schema: dict = {
                 "fps": {
                     "$id": "#/properties/camera/properties/fps",
                     "default": 0,
-                    "examples": range(5, 30, 5),
+                    "examples": list(range(5, 30, 5)),
                     "title": "Expected FPS of video capture from camera input.",
                     "type": "integer"
                 }
@@ -67,30 +67,6 @@ schema: dict = {
                     "examples": [True],
                     "title": "Whether or not to enable visualization of bounding boxes.",
                     "type": "boolean"
-                }
-            }
-        },
-        "logging": {
-            "$id": "#/properties/logging",
-            "required": ["log_level", "format"],
-            "title": "The logging configuration object.",
-            "type": "object",
-            "properties": {
-                "format": {
-                    "$id": "#/properties/logging/properties/format",
-                    "default": "",
-                    "examples": ["%(name)s %(levelname)s %(message)s"],
-                    "pattern": "^(.*)$",
-                    "title": "The formatting string to be used when writing the logs to the console.",
-                    "type": "string"
-                },
-                "log_level": {
-                    "$id": "#/properties/logging/properties/log_level",
-                    "default": "DEBUG",
-                    "examples": ["DEBUG", "INFO", "WARNING", "ERROR"],
-                    "pattern": "^(.*)$",
-                    "title": "The maximum logging level to use. Should remain as DEBUG.",
-                    "type": "string"
                 }
             }
         },

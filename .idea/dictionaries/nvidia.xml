@@ -1,19 +1,26 @@
 <component name="ProjectDictionaryState">
   <dictionary name="nvidia">
     <words>
+      <w>aarch</w>
       <w>asctime</w>
       <w>broadcasted</w>
+      <w>coloredlogs</w>
       <w>fatals</w>
       <w>inferrer</w>
       <w>jetson</w>
+      <w>jsonschema</w>
       <w>levelname</w>
       <w>mlrun</w>
       <w>networktables</w>
       <w>nvidia</w>
       <w>opencv</w>
+      <w>pynetworktables</w>
       <w>resizer</w>
+      <w>robo</w>
       <w>roborio</w>
+      <w>subschema</w>
       <w>tensorflow</w>
+      <w>testresources</w>
       <w>threadable</w>
       <w>webcam</w>
       <w>xmax</w>

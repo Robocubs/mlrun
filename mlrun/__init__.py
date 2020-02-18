@@ -11,22 +11,17 @@ import os
 import sys
 import pkg_resources
 
-# Installed modules
+# Non-guarded installed modules
 import coloredlogs
 import jsonschema
+from jsonschema import ValidationError
 
 # Type hinting only
 from logging import Logger
 from typing import Dict
 
 # Local imports
-from jsonschema import ValidationError
-
 from mlrun import strings, schema
-
-# Load configuration file
-with open("config.json") as fp:
-    config = json.load(fp)
 
 # Create individual loggers for each segment of the program.
 l: Dict[str, Logger] = {
@@ -37,14 +32,23 @@ l: Dict[str, Logger] = {
 }
 # Install colored logging hook onto each of our loggers.
 [coloredlogs.install(
-    level=config["logging"]["log_level"],
+    level="DEBUG",
     logger=l[i],
-    fmt=config["logging"]["format"]
+    fmt="%(name)s %(levelname)s %(message)s"
 ) for i in l.keys()]
 # Disable TensorFlow mixed logging.
 logging.getLogger("tensorflow").setLevel(logging.FATAL)
 # Whether the pipeline should be enabled.
 pipelineEnabled = True
+
+# Load configuration file
+if len(sys.argv) != 2:
+    l["root"].error("Incorrect number of arguments.")
+    l["root"].error("MLRun should be invoked as:")
+    l["root"].error("\tpython3 -m mlrun {config_path}")
+    sys.exit(1)
+with open(sys.argv[1]) as fp:
+    config = json.load(fp)
 
 ###########################################################################
 # Start logging below, because the logger isn't loaded before this point. #
@@ -92,7 +96,7 @@ elif config["tensorflow"]["minimum_logging_level"] is 2:
     l["tensorflow"].warning(strings.tensorflow_log_level_errors)
 elif config["tensorflow"]["minimum_logging_level"] is 3:
     l["tensorflow"].warning(strings.tensorflow_log_level_fatal)
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = config["tensorflow"]["minimum_logging_level"]
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = str(config["tensorflow"]["minimum_logging_level"])
 
 # Open the camera for reading.
 # Then check whether the capture was successfully opened.

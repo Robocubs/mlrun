@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/schema.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +82,7 @@
       <workItem from="1581185222025" duration="8547000" />
       <workItem from="1581344532831" duration="714000" />
       <workItem from="1581368940603" duration="2789000" />
-      <workItem from="1582036201993" duration="4439000" />
+      <workItem from="1582036201993" duration="10216000" />
     </task>
     <servers />
   </component>
@@ -109,6 +110,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582039930277" />
+    <state x="1210" y="464" width="450" height="172" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582045449417">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1210" y="464" width="450" height="172" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582045449417" />
     <state x="623" y="259" key="search.everywhere.popup" timestamp="1580933553148">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
