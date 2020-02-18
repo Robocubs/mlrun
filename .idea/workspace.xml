@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
@@ -112,6 +112,7 @@
       <workItem from="1582036201993" duration="10216000" />
       <workItem from="1582048169750" duration="2126000" />
       <workItem from="1582059732047" duration="3152000" />
+      <workItem from="1582064834564" duration="1698000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -127,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582052599541</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Mostly small changes. Odds and ends, essentially.">
+      <created>1582064867681</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582064867681</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +144,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
     <MESSAGE value="Big change: add averaging for FPS." />
-    <option name="LAST_COMMIT_MESSAGE" value="Big change: add averaging for FPS." />
+    <MESSAGE value="Mostly small changes. Odds and ends, essentially." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mostly small changes. Odds and ends, essentially." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1582038390038">
@@ -147,18 +156,18 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="768" y="272" width="374" height="556" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1580933553137" />
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582052599485">
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582064867559">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582052599485" />
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582064867559" />
     <state x="449" y="188" key="SettingsEditor" timestamp="1581172206692">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1581172206692" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582052610046">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582064868932">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582052610046" />
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582064868932" />
     <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582064834654">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

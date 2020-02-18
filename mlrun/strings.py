@@ -74,5 +74,5 @@ stopped_nt: str = "Pipeline stopped by NetworkTables disable command."
 stopped_keyboard: str = "Pipeline stopped with KeyboardInterrupt."
 
 error_wrong_arguments: str = "Incorrect number of arguments.\nMLRun should be invoked as follows:\n\tpython3 -m mlrun" \
-                             " [config_path]"
+                             " [config_name]"
 error_nonexistant_camera: str = "Camera ID /dev/video{id} does not exist!"

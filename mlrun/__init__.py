@@ -13,15 +13,13 @@ import pkg_resources
 
 # Non-guarded installed modules
 import coloredlogs
-import jsonschema
-from jsonschema import ValidationError
 
 # Type hinting only
 from logging import Logger
 from typing import Dict, List
 
 # Local imports
-from mlrun import strings, schema
+from mlrun import strings, schema, config
 
 # Create individual loggers for each segment of the program.
 l: Dict[str, Logger] = {
@@ -41,25 +39,16 @@ logging.getLogger("tensorflow").setLevel(logging.FATAL)
 # Whether the pipeline should be enabled.
 pipelineEnabled: bool = True
 
-# Load configuration file
-if len(sys.argv) != 2:
+if len(sys.argv) == 2:
+    config = config.configurations[sys.argv[1]]
+else:
     l["root"].error(strings.error_wrong_arguments)
     sys.exit(1)
-with open(sys.argv[1]) as fp:
-    config = json.load(fp)
 
 ###########################################################################
 # Start logging below, because the logger isn't loaded before this point. #
 ###########################################################################
 l["root"].debug(strings.mlrun_started)
-
-# Verify configuration file
-try:
-    l["root"].info(strings.validation_started)
-    jsonschema.validate(config, schema=schema.schema)
-except ValidationError as e:
-    l["root"].error(strings.validation_error)
-    l["root"].error(str(e))
 
 l["root"].info(strings.validation_successful)
 
