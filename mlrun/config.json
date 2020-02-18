@@ -6,7 +6,7 @@
     "model_path": "/home/nvidia/Documents/Programming/Python/MLRun/v2"
   },
   "camera": {
-    "id": 0,
+    "id": 2,
     "width": 320,
     "height": 240,
     "fps": 30

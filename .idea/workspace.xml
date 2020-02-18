@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython to the list of dependencies for">
+    <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +81,24 @@
       <workItem from="1581344532831" duration="714000" />
       <workItem from="1581368940603" duration="2789000" />
       <workItem from="1582036201993" duration="10216000" />
-      <workItem from="1582048169750" duration="68000" />
+      <workItem from="1582048169750" duration="1371000" />
     </task>
+    <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
+      <created>1582048261007</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582048261007</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1582038390038">
@@ -95,18 +109,18 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="768" y="272" width="374" height="556" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1580933553137" />
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582048234914">
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582048260922">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582048234914" />
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582048260922" />
     <state x="449" y="188" key="SettingsEditor" timestamp="1581172206692">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1581172206692" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582046555189">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582048263055">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582046555189" />
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582048263055" />
     <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582048169806">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

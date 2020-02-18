@@ -18,7 +18,7 @@ from jsonschema import ValidationError
 
 # Type hinting only
 from logging import Logger
-from typing import Dict
+from typing import Dict, List
 
 # Local imports
 from mlrun import strings, schema
@@ -189,6 +189,7 @@ else:
 fps: float = 0.0
 freq: float = cv2.getTickFrequency()
 l["opencv"].info(strings.opencv_tick_frequency.format(freq=freq))
+average_fps: List[float] = []
 
 try:
     l["tensorflow"].info(strings.tensorflow_loading_model)
@@ -219,6 +220,7 @@ try:
                     t2 = cv2.getTickCount()
                     pre_calc = (t2 - t1) / freq
                     fps = 1 / pre_calc
+                    average_fps.append(fps)
                     detections.append([xmin, ymin, xmax, ymax, round(100 * scores[i], 1)])
             if config["debugging"]["logs"]:
                 for i in detections:
@@ -226,7 +228,7 @@ try:
                                                              ymax=i[4]))
             if config["debugging"]["show"]:
                 for i in detections:
-                    cv2.rectangle(frame, (i[1], i[2]), (i[3], i[4]), (255, 0, 0), 2)
+                    cv2.rectangle(frame, (i[0], i[1]), (i[2], i[3]), (255, 0, 0), 2)
                 cv2.imshow("MLRun Debugging View", frame)
                 cv2.waitKey(1) & 0xFF
             if config["networktables"]["enabled"]:
@@ -246,4 +248,6 @@ except KeyboardInterrupt:
     cap.release()
     if config["debugging"]["show"]:
         cv2.destroyAllWindows()
+    if len(average_fps) > 0:
+        l["root"].info(f"Average FPS: {round(sum(average_fps)/len(average_fps), 1)}")
     sys.exit(0)
