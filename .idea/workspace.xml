@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +58,35 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
+  <component name="RunManager">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MLRun" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mlrun" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mlrun/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.__init__" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -81,7 +110,8 @@
       <workItem from="1581344532831" duration="714000" />
       <workItem from="1581368940603" duration="2789000" />
       <workItem from="1582036201993" duration="10216000" />
-      <workItem from="1582048169750" duration="1371000" />
+      <workItem from="1582048169750" duration="2126000" />
+      <workItem from="1582059732047" duration="3152000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -90,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582048261007</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Big change: add averaging for FPS.">
+      <created>1582052599541</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582052599541</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,7 +135,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
+    <MESSAGE value="Big change: add averaging for FPS." />
+    <option name="LAST_COMMIT_MESSAGE" value="Big change: add averaging for FPS." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1582038390038">
@@ -109,22 +147,22 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="768" y="272" width="374" height="556" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1580933553137" />
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582048260922">
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582052599485">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582048260922" />
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582052599485" />
     <state x="449" y="188" key="SettingsEditor" timestamp="1581172206692">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1581172206692" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582048263055">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582052610046">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582048263055" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582048169806">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582052610046" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582064834654">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582048169806" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582064834654" />
     <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582039930277">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

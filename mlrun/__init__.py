@@ -39,13 +39,11 @@ l: Dict[str, Logger] = {
 # Disable TensorFlow mixed logging.
 logging.getLogger("tensorflow").setLevel(logging.FATAL)
 # Whether the pipeline should be enabled.
-pipelineEnabled = True
+pipelineEnabled: bool = True
 
 # Load configuration file
 if len(sys.argv) != 2:
-    l["root"].error("Incorrect number of arguments.")
-    l["root"].error("MLRun should be invoked as:")
-    l["root"].error("\tpython3 -m mlrun {config_path}")
+    l["root"].error(strings.error_wrong_arguments)
     sys.exit(1)
 with open(sys.argv[1]) as fp:
     config = json.load(fp)
@@ -96,7 +94,7 @@ elif config["tensorflow"]["minimum_logging_level"] is 2:
     l["tensorflow"].warning(strings.tensorflow_log_level_errors)
 elif config["tensorflow"]["minimum_logging_level"] is 3:
     l["tensorflow"].warning(strings.tensorflow_log_level_fatal)
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = str(config["tensorflow"]["minimum_logging_level"])
+os.system(f"export TF_CPP_MIN_LOG_LEVEL={config['tensorflow']['minimum_logging_level']}")
 
 # Open the camera for reading.
 # Then check whether the capture was successfully opened.
@@ -112,12 +110,16 @@ except ImportError:
     sys.exit(1)
 
 l["opencv"].info(strings.opencv_successful)
-cap = cv2.VideoCapture(int(config["camera"]["id"]))
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, config["camera"]["width"])
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, config["camera"]["height"])
-cap.set(cv2.CAP_PROP_FPS, config["camera"]["fps"])
-if not cap.isOpened():
-    l["opencv"].error(strings.opencv_camera_error.format(cam=config["camera"]["id"]))
+if os.path.exists(f"/dev/video{int(config['camera']['id'])}"):
+    cap = cv2.VideoCapture(int(config["camera"]["id"]))
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, config["camera"]["width"])
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, config["camera"]["height"])
+    cap.set(cv2.CAP_PROP_FPS, config["camera"]["fps"])
+    if not cap.isOpened():
+        l["opencv"].error(strings.opencv_camera_error.format(cam=config["camera"]["id"]))
+        sys.exit(1)
+else:
+    l["root"].error(strings.error_nonexistant_camera.format(id=config["camera"]["id"]))
     sys.exit(1)
 
 # Prepare for publishing via NetworkTables, if enabled in the settings file.
@@ -151,7 +153,7 @@ if config["networktables"]["enabled"]:
 
 
     NetworkTables.addConnectionListener(connection_listener, True)
-    NetworkTables.initialize(server="roborio-{team}-frc.local".format(team=config["networktables"]["team"]))
+    NetworkTables.initialize(server=f"roborio-{config['networktables']['team']}-frc.local")
     sd: NetworkTable = NetworkTables.getTable(config["networktables"]["table"])
 else:
     l["networktables"].warning(strings.networktables_expected_disable)
