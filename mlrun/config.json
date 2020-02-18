@@ -1,0 +1,28 @@
+{
+  "tensorflow": {
+    "print_deprecation_messages": false,
+    "minimum_logging_level": 3,
+    "compat": true,
+    "model_path": "/home/nvidia/Documents/Programming/Python/MLRun/v2"
+  },
+  "logging": {
+    "log_level": "DEBUG",
+    "format": "%(asctime)s %(name)s %(levelname)s %(message)s"
+  },
+  "camera": {
+    "id": 0,
+    "width": 320,
+    "height": 240,
+    "fps": 30
+  },
+  "networktables": {
+    "enabled": false,
+    "team": 1701,
+    "table": "SmartDashboard",
+    "keyPrefix": "jetson"
+  },
+  "debugging": {
+    "logs": true,
+    "show": true
+  }
+}
