@@ -1,54 +1,62 @@
-"""Configuration for MLRun.
+"""Configurations for MLRun.
 
-This file defines your configuration for MLRun.
+This file defines your configuration for MLRun. When running MLRun, pass a configuration name as the first argument.
 """
 from typing import Dict, Union
 
-configurations: Dict[str, Dict[str, Dict[str, Union[bool, int, str]]]] = {
+# Define type aliases to make reading the types less complicated.
+# This is somewhat stupid, because it allows for non-specific typings of configuration objects.
+# Unfortunately, both the Jetson and the Ubuntu 18.04 LTS developer workstation used by our team use Python 3.6.
+# This means that I can't use TypedDict, and there isn't a backport available for it. *sigh*
+Configuration = Dict[str, Dict[str, Union[bool, int, str]]]
+ConfigurationDictionary = Dict[str, Configuration]
+
+# Define your configuration below in a new top-level dictionary entry.
+configurations: ConfigurationDictionary = {
     "desktop": {
-        "tensorflow": {
-            "print_deprecation_messages": False,
-            "minimum_logging_level": 3,
+        "tf": {
+            "deprecation": False,
+            "level": 3,
             "compat": True,
-            "model_path": "/home/nvidia/Documents/Programming/Python/MLRun/v2"
+            "path": "/home/nvidia/Documents/Programming/Python/MLRun/v2"
         },
-        "camera": {
+        "cam": {
             "id": 0,
             "width": 320,
             "height": 240,
             "fps": 30
         },
-        "networktables": {
+        "nt": {
             "enabled": False,
             "team": 1701,
             "table": "SmartDashboard",
-            "keyPrefix": "jetson"
+            "prefix": "jetson"
         },
-        "debugging": {
+        "debug": {
             "logs": True,
             "show": False
         }
     },
     "jetson": {
-        "tensorflow": {
-            "print_deprecation_messages": False,
-            "minimum_logging_level": 3,
+        "tf": {
+            "deprecation": False,
+            "level": 3,
             "compat": True,
-            "model_path": "/home/nvidia/mlrun/mlrun/v2",
+            "path": "/home/nvidia/mlrun/mlrun/v2",
         },
-        "camera": {
+        "cam": {
             "id": 2,
             "width": 320,
             "height": 240,
             "fps": 30
         },
-        "networktables": {
+        "nt": {
             "enabled": True,
             "team": 1701,
             "table": "SmartDashboard",
-            "keyPrefix": "jetson"
+            "prefix": "jetson"
         },
-        "debugging": {
+        "debug": {
             "logs": True,
             "show": False
         }

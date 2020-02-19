@@ -5,10 +5,6 @@ These strings are used by MLRun to ensure that all of the text shown is correct.
 """
 mlrun_started: str = "Welcome to MLRun! Starting up..."
 
-validation_started: str = "Validating configuration schema..."
-validation_successful: str = "Configuration is valid."
-validation_error: str = "Configuration is invalid. The validator says this:"
-
 debugging_disabled: str = "Debugging is not enabled."
 debugging_logs_only: str = "Log-based debugging is enabled."
 debugging_show_only: str = "Visualization debugging is enabled. Performance will be dramatically reduced."
@@ -21,8 +17,8 @@ tensorflow_deprecation_disabled: str = "TensorFlow deprecation warnings have bee
 tensorflow_deprecation_enabled: str = "TensorFlow deprecation warnings have been enabled. These can safely be " \
                                       "ignored, or turned off in your configuration file if they don't affect your " \
                                       "use case. "
-tensorflow_deprecation_irrelevant: str = "TensorFlow deprecation warnings are irrelevant for your usage case; you are " \
-                                         "running a more recent version of TensorFlow. "
+tensorflow_deprecation_irrelevant: str = "TensorFlow deprecation warnings are irrelevant for your usage case; you " \
+                                         "are running a more recent version of TensorFlow. "
 
 tensorflow_log_level_full: str = "TensorFlow minimum logging level set to allow information, warnings, non-fatal " \
                                  "errors, and fatal errors. This may reduce performance; recommended setting is FATAL."
@@ -76,3 +72,7 @@ stopped_keyboard: str = "Pipeline stopped with KeyboardInterrupt."
 error_wrong_arguments: str = "Incorrect number of arguments.\nMLRun should be invoked as follows:\n\tpython3 -m mlrun" \
                              " [config_name]"
 error_nonexistant_camera: str = "Camera ID /dev/video{id} does not exist!"
+
+average_fps_message: str = "Average FPS: {fps}"
+
+warning_coloredlogs: str = "Coloredlogs is not present; logs will be less readable and difficult to understand."

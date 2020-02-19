@@ -4,6 +4,7 @@
 This module loads a model from a file, imports it into memory,
 and executes it with a camera input.
 """
+
 # Global modules
 import json
 import logging
@@ -11,120 +12,157 @@ import os
 import sys
 import pkg_resources
 
-# Non-guarded installed modules
-import coloredlogs
-
 # Type hinting only
 from logging import Logger
 from typing import Dict, List
 
 # Local imports
-from mlrun import strings, schema, config
+from mlrun import strings, config
 
 # Create individual loggers for each segment of the program.
 l: Dict[str, Logger] = {
-    "root": logging.getLogger("mlrun"),
-    "tensorflow": logging.getLogger("tf"),
-    "opencv": logging.getLogger("opencv"),
-    "networktables": logging.getLogger("networktables")
+    "mlrun": logging.getLogger("mlrun"),
+    "tf": logging.getLogger("tf"),
+    "cv2": logging.getLogger("cv2"),
+    "nt": logging.getLogger("nt")
 }
-# Install colored logging hook onto each of our loggers.
-[coloredlogs.install(
-    level="DEBUG",
-    logger=l[i],
-    fmt="%(name)s %(levelname)s %(message)s"
-) for i in l.keys()]
-# Disable TensorFlow mixed logging.
-logging.getLogger("tensorflow").setLevel(logging.FATAL)
-# Whether the pipeline should be enabled.
-pipelineEnabled: bool = True
-
-if len(sys.argv) == 2:
-    config = config.configurations[sys.argv[1]]
-else:
-    l["root"].error(strings.error_wrong_arguments)
-    sys.exit(1)
 
 ###########################################################################
 # Start logging below, because the logger isn't loaded before this point. #
 ###########################################################################
-l["root"].debug(strings.mlrun_started)
 
-l["root"].info(strings.validation_successful)
+# Enable colored logging if the `coloredlogs` module is available.
+try:
+    # PyCharm is unhappy here because I don't import coloredlogs in the except as well.
+    # But that defeats the point of this import guard.
+    # noinspection PyUnresolvedReferences
+    import coloredlogs
+    # Install colored logging hook onto each of our loggers. Powered by the magic of dictionary-list hybrid
+    # comprehensions!
+    [coloredlogs.install(
+        level="DEBUG",
+        logger=l[i],
+        fmt="%(name)s %(levelname)s %(message)s"
+    ) for i in l.keys()]
+except ImportError:
+    # Issue a warning, but continue on without colored logging if the module is missing.
+    l["mlrun"].warning(strings.warning_coloredlogs)
+
+# Disable TensorFlow mixed logging. This is important because TensorFlow will start logging random Python-based
+# messages without this line.
+logging.getLogger("tensorflow").setLevel(logging.FATAL)
+# The pipeline should immediately be enabled if this is set. Will be moved to a config variable eventually.
+pipelineEnabled: bool = True
+
+# Determine the number of arguments.
+if len(sys.argv) == 2:
+    # Load the configuration.
+    config = config.configurations[sys.argv[1]]
+    # Make some aliases for readability's sake.
+    deprecation: bool = config["tf"]["deprecation"]
+    level: int = config["tf"]["level"]
+    compat: bool = config["tf"]["compat"]
+    path: str = config["tf"]["path"]
+    camera: Dict[str, int] = config["cam"]
+    nt: bool = config["nt"]["enabled"]
+    team: int = config["nt"]["team"]
+    table: str = config["nt"]["table"]
+    prefix: str = config["nt"]["prefix"]
+    dlog: bool = config["debug"]["logs"]
+    dshow: bool = config["debug"]["show"]
+else:
+    l["mlrun"].error(strings.error_wrong_arguments)
+    sys.exit(1)
+
+#######################################################################################################
+# All things requiring configuration go below here. The configuration isn't loaded before this point. #
+#######################################################################################################
+
+l["mlrun"].info(strings.mlrun_started)
 
 # If configured to do so, enable debugging.
-if (not config["debugging"]["logs"]) and (not config["debugging"]["show"]):
-    l["root"].info(strings.debugging_disabled)
-elif config["debugging"]["logs"] and (not config["debugging"]["show"]):
-    l["root"].info(strings.debugging_logs_only)
-elif (not config["debugging"]["logs"]) and config["debugging"]["show"]:
-    l["root"].info(strings.debugging_show_only)
-elif config["debugging"]["logs"] and config["debugging"]["show"]:
-    l["root"].info(strings.debugging_full_enabled)
+if (not dlog) and (not dshow):
+    l["mlrun"].info(strings.debugging_disabled)
+elif dlog and (not dshow):
+    l["mlrun"].warning(strings.debugging_logs_only)
+elif (not dlog) and dshow:
+    l["mlrun"].warning(strings.debugging_show_only)
+elif dlog and dshow:
+    l["mlrun"].warning(strings.debugging_full_enabled)
 
 # If configured to do so, hide TensorFlow deprecation messages.
-# Note that this is a private API, and may disappear at any time.
-if not config["tensorflow"]["print_deprecation_messages"]:
-    l["tensorflow"].warning(strings.tensorflow_deprecation_disabled)
-    from tensorflow.python.util import deprecation
-
-    deprecation._PRINT_DEPRECATION_WARNINGS = False
-elif pkg_resources.get_distribution("tensorflow").version.split(".")[0] > 1:
-    l["tensorflow"].info(strings.tensorflow_deprecation_irrelevant)
-else:
-    l["tensorflow"].info(strings.tensorflow_deprecation_enabled)
+# Note that this is a private undocumented API, and may disappear at any time.
+try:
+    if pkg_resources.get_distribution("tensorflow").version.split(".")[0] > 1:
+        l["tf"].info(strings.tensorflow_deprecation_irrelevant)
+    else:
+        if not deprecation:
+            l["tf"].warning(strings.tensorflow_deprecation_disabled)
+            try:
+                # noinspection PyUnresolvedReferences
+                from tensorflow.python.util import deprecation
+                deprecation._PRINT_DEPRECATION_WARNINGS = False
+            except ImportError:
+                l["tf"].error(strings.tensorflow_legacy_error)
+                sys.exit(1)
+        else:
+            l["tf"].info(strings.tensorflow_deprecation_enabled)
+except ImportError:
+    l["mlrun"].error(strings.tensorflow_legacy_error)
+    sys.exit(1)
 
 # If configured to do so, hide TensorFlow's normal output messages.
-if config["tensorflow"]["minimum_logging_level"] is 0:
-    l["tensorflow"].warning(strings.tensorflow_log_level_full)
-elif config["tensorflow"]["minimum_logging_level"] is 1:
-    l["tensorflow"].warning(strings.tensorflow_log_level_warnings)
-elif config["tensorflow"]["minimum_logging_level"] is 2:
-    l["tensorflow"].warning(strings.tensorflow_log_level_errors)
-elif config["tensorflow"]["minimum_logging_level"] is 3:
-    l["tensorflow"].warning(strings.tensorflow_log_level_fatal)
-os.system(f"export TF_CPP_MIN_LOG_LEVEL={config['tensorflow']['minimum_logging_level']}")
+if level is 0:
+    l["tf"].warning(strings.tensorflow_log_level_full)
+elif level is 1:
+    l["tf"].warning(strings.tensorflow_log_level_warnings)
+elif level is 2:
+    l["tf"].warning(strings.tensorflow_log_level_errors)
+elif level is 3:
+    l["tf"].warning(strings.tensorflow_log_level_fatal)
+os.system(f"export TF_CPP_MIN_LOG_LEVEL={level}")
 
 # Open the camera for reading.
 # Then check whether the capture was successfully opened.
-l["opencv"].info(strings.opencv_loading)
+l["cv2"].info(strings.opencv_loading)
 try:
     # Note: PyCharm freaks out about OpenCV, b/c supposedly the references we make don't exist.
     # Spoiler alert: they do.
     # noinspection PyUnresolvedReferences
     import cv2
-    # inspection PyUnresolvedReferences
 except ImportError:
-    l["opencv"].error(strings.opencv_unsuccessful)
+    # Fail if unsuccessful.
+    l["cv2"].error(strings.opencv_unsuccessful)
     sys.exit(1)
 
-l["opencv"].info(strings.opencv_successful)
-if os.path.exists(f"/dev/video{int(config['camera']['id'])}"):
-    cap = cv2.VideoCapture(int(config["camera"]["id"]))
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, config["camera"]["width"])
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, config["camera"]["height"])
-    cap.set(cv2.CAP_PROP_FPS, config["camera"]["fps"])
+l["cv2"].info(strings.opencv_successful)
+if os.path.exists(f"/dev/video{camera['id']}"):
+    cap = cv2.VideoCapture(camera["id"])
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera["width"])
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera["height"])
+    cap.set(cv2.CAP_PROP_FPS, camera["fps"])
     if not cap.isOpened():
-        l["opencv"].error(strings.opencv_camera_error.format(cam=config["camera"]["id"]))
+        l["cv2"].error(strings.opencv_camera_error.format(cam=camera["id"]))
         sys.exit(1)
 else:
-    l["root"].error(strings.error_nonexistant_camera.format(id=config["camera"]["id"]))
+    l["mlrun"].error(strings.error_nonexistant_camera.format(id=camera["id"]))
     sys.exit(1)
 
 # Prepare for publishing via NetworkTables, if enabled in the settings file.
-if config["networktables"]["enabled"]:
-    l["networktables"].info(strings.networktables_loading)
+if nt:
+    l["nt"].info(strings.networktables_loading)
     try:
         from _pynetworktables import NetworkTable
         from networktables import NetworkTables
+        from _pynetworktables._impl.structs import ConnectionInfo
     except ImportError:
-        l["networktables"].error(strings.networktables_unexpected_disable)
+        l["nt"].error(strings.networktables_unexpected_disable)
         sys.exit(1)
 
-    l["networktables"].info(strings.networktables_successful)
+    l["nt"].info(strings.networktables_successful)
 
 
-    def connection_listener(status, connection):
+    def connection_listener(status: bool, connection: ConnectionInfo):
         """
         Connection listener for NetworkTables.
         Args:
@@ -132,67 +170,68 @@ if config["networktables"]["enabled"]:
             connection: ConnectionInfo NamedTuple from NetworkTables
         """
         if status:
-            l["networktables"].info(strings.networktables_connection_established.format(
+            l["nt"].info(strings.networktables_connection_established.format(
                 ip=connection.remote_ip,
                 port=connection.remote_port,
                 ver=connection.protocol_version
             ))
         else:
-            l["networktables"].warning(strings.networktables_connection_lost)
+            l["nt"].warning(strings.networktables_connection_lost)
 
 
     NetworkTables.addConnectionListener(connection_listener, True)
-    NetworkTables.initialize(server=f"roborio-{config['networktables']['team']}-frc.local")
-    sd: NetworkTable = NetworkTables.getTable(config["networktables"]["table"])
+    NetworkTables.initialize(server=f"roborio-{team}-frc.local")
+    sd: NetworkTable = NetworkTables.getTable(table)
 else:
-    l["networktables"].warning(strings.networktables_expected_disable)
+    l["nt"].warning(strings.networktables_expected_disable)
 
 # Load TensorFlow from disk.
-if config["tensorflow"]["compat"]:
-    l["tensorflow"].warning(strings.tensorflow_legacy_mode)
-    l["tensorflow"].info(strings.tensorflow_legacy_loading)
+if compat:
+    l["tf"].warning(strings.tensorflow_legacy_mode)
+    l["tf"].info(strings.tensorflow_legacy_loading)
     try:
         import tensorflow.compat.v1 as tf
+        tf.disable_v2_behavior()
     except ImportError:
-        l["tensorflow"].error(strings.tensorflow_legacy_error)
+        l["tf"].error(strings.tensorflow_legacy_error)
         sys.exit(1)
 
-    l["tensorflow"].info(strings.tensorflow_legacy_loaded)
+    l["tf"].info(strings.tensorflow_legacy_loaded)
 else:
-    l["tensorflow"].info(strings.tensorflow_modern_mode)
-    l["tensorflow"].info(strings.tensorflow_modern_loading)
+    l["tf"].info(strings.tensorflow_modern_mode)
+    l["tf"].info(strings.tensorflow_modern_loading)
     try:
         import tensorflow as tf
     except ImportError:
-        l["tensorflow"].error(strings.tensorflow_modern_error)
+        l["tf"].error(strings.tensorflow_modern_error)
         sys.exit(1)
 
-    l["tensorflow"].info(strings.tensorflow_modern_loaded)
+    l["tf"].info(strings.tensorflow_modern_loaded)
 
 # Check if a model exists at the specified path.
-if os.path.exists(config["tensorflow"]["model_path"] + "/saved_model.pb"):
-    l["tensorflow"].info(strings.tensorflow_model_present)
+if os.path.exists(path + "/saved_model.pb"):
+    l["tf"].info(strings.tensorflow_model_present)
 else:
-    l["tensorflow"].error(strings.tensorflow_model_missing)
+    l["tf"].error(strings.tensorflow_model_missing)
     sys.exit(1)
 
 # Notify of frame rate tick frequency.
 fps: float = 0.0
 freq: float = cv2.getTickFrequency()
-l["opencv"].info(strings.opencv_tick_frequency.format(freq=freq))
+l["cv2"].info(strings.opencv_tick_frequency.format(freq=freq))
 average_fps: List[float] = []
 
 try:
-    l["tensorflow"].info(strings.tensorflow_loading_model)
+    l["tf"].info(strings.tensorflow_loading_model)
     with tf.Session(graph=tf.Graph()) as sess:
-        tf.saved_model.loader.load(sess, ["serve"], config["tensorflow"]["model_path"])
-        l["root"].info(strings.tensorflow_loaded_model)
+        tf.saved_model.loader.load(sess, ["serve"], path)
+        l["mlrun"].info(strings.tensorflow_loaded_model)
         # Begin process of inference.
-        if config["networktables"]["enabled"]:
-            sd.putBoolean(f"{config['networktables']['keyPrefix']}/enabled", pipelineEnabled)
+        if nt:
+            sd.putBoolean(f"{prefix}/enabled", pipelineEnabled)
         while True:
-            if config["networktables"]["enabled"]:
-                if sd.getBoolean(f"{config['networktables']['keyPrefix']}/enabled", False):
+            if nt:
+                if sd.getBoolean(f"{prefix}/enabled", pipelineEnabled):
                     continue
             t1 = cv2.getTickCount()
             frame = cap.read()[1]
@@ -213,32 +252,32 @@ try:
                     fps = 1 / pre_calc
                     average_fps.append(fps)
                     detections.append([xmin, ymin, xmax, ymax, round(100 * scores[i], 1)])
-            if config["debugging"]["logs"]:
+            if dlog:
                 for i in detections:
-                    l["root"].debug(strings.debug_log.format(fps=round(fps, 1), xmin=i[1], ymin=i[2], xmax=i[3],
+                    l["mlrun"].debug(strings.debug_log.format(fps=round(fps, 1), xmin=i[1], ymin=i[2], xmax=i[3],
                                                              ymax=i[4]))
-            if config["debugging"]["show"]:
+            if dshow:
                 for i in detections:
                     cv2.rectangle(frame, (i[0], i[1]), (i[2], i[3]), (255, 0, 0), 2)
                 cv2.imshow("MLRun Debugging View", frame)
                 cv2.waitKey(1) & 0xFF
-            if config["networktables"]["enabled"]:
-                sd.putString("jetson/detections", json.dumps({
+            if nt:
+                sd.putString(f"{prefix}/detections", json.dumps({
                     "fps": round(fps, 1),
                     "numDetections": len(detections),
                     "detections": detections
                 }))
 
-        if config["networktables"]["enabled"]:
-            l["root"].info(strings.stopped_nt)
-            sd.putBoolean(f"{config['networktables']['keyPrefix']}/enabled", False)
+        if nt:
+            l["mlrun"].info(strings.stopped_nt)
+            sd.putBoolean(f"{prefix}/enabled", False)
 except KeyboardInterrupt:
-    l["root"].warning(strings.stopped_keyboard)
-    if config["networktables"]["enabled"]:
-        sd.putBoolean(f"{config['networktables']['keyPrefix']}/enabled", False)
+    l["mlrun"].warning(strings.stopped_keyboard)
+    if nt:
+        sd.putBoolean(f"{prefix}/enabled", False)
     cap.release()
-    if config["debugging"]["show"]:
+    if dshow:
         cv2.destroyAllWindows()
     if len(average_fps) > 0:
-        l["root"].info(f"Average FPS: {round(sum(average_fps)/len(average_fps), 1)}")
+        l["mlrun"].info(strings.average_fps_message.format(fps=round(sum(average_fps)/len(average_fps), 1)))
     sys.exit(0)
