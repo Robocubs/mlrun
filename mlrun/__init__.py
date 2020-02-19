@@ -37,6 +37,7 @@ try:
     # But that defeats the point of this import guard.
     # noinspection PyUnresolvedReferences
     import coloredlogs
+
     # Install colored logging hook onto each of our loggers. Powered by the magic of dictionary-list hybrid
     # comprehensions!
     [coloredlogs.install(
@@ -81,6 +82,8 @@ else:
 l["mlrun"].info(strings.mlrun_started)
 
 # If configured to do so, enable debugging.
+# Debugging can consist of either logging results per frame, visualization of results, or all of the above.
+# If visualization is enabled, performance will be significantly lowered.
 if (not dlog) and (not dshow):
     l["mlrun"].info(strings.debugging_disabled)
 elif dlog and (not dshow):
@@ -101,6 +104,7 @@ try:
             try:
                 # noinspection PyUnresolvedReferences
                 from tensorflow.python.util import deprecation
+
                 deprecation._PRINT_DEPRECATION_WARNINGS = False
             except ImportError:
                 l["tf"].error(strings.tensorflow_legacy_error)
@@ -191,6 +195,7 @@ if compat:
     l["tf"].info(strings.tensorflow_legacy_loading)
     try:
         import tensorflow.compat.v1 as tf
+
         tf.disable_v2_behavior()
     except ImportError:
         l["tf"].error(strings.tensorflow_legacy_error)
@@ -254,8 +259,8 @@ try:
                     detections.append([xmin, ymin, xmax, ymax, round(100 * scores[i], 1)])
             if dlog:
                 for i in detections:
-                    l["mlrun"].debug(strings.debug_log.format(fps=round(fps, 1), xmin=i[1], ymin=i[2], xmax=i[3],
-                                                             ymax=i[4]))
+                    l["mlrun"].debug(strings.debug_log.format(fps=round(fps, 1), xmin=i[0], ymin=i[1], xmax=i[2],
+                                                              ymax=i[3]))
             if dshow:
                 for i in detections:
                     cv2.rectangle(frame, (i[0], i[1]), (i[2], i[3]), (255, 0, 0), 2)
@@ -279,5 +284,5 @@ except KeyboardInterrupt:
     if dshow:
         cv2.destroyAllWindows()
     if len(average_fps) > 0:
-        l["mlrun"].info(strings.average_fps_message.format(fps=round(sum(average_fps)/len(average_fps), 1)))
+        l["mlrun"].info(strings.average_fps_message.format(fps=round(sum(average_fps) / len(average_fps), 1)))
     sys.exit(0)

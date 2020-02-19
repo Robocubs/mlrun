@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
+    <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="Fundamental reworking and simplification of the codebase before other stuff happens.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/schema.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +112,8 @@
       <workItem from="1582048169750" duration="2126000" />
       <workItem from="1582059732047" duration="3152000" />
       <workItem from="1582064834564" duration="2708000" />
-      <workItem from="1582127473108" duration="5189000" />
+      <workItem from="1582127473108" duration="9555000" />
+      <workItem from="1582140093362" duration="153000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -140,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582064867681</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fundamental reworking and simplification of the codebase before other stuff happens.">
+      <created>1582133942410</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582133942410</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,13 +153,18 @@
     <MESSAGE value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
     <MESSAGE value="Big change: add averaging for FPS." />
     <MESSAGE value="Mostly small changes. Odds and ends, essentially." />
-    <option name="LAST_COMMIT_MESSAGE" value="Mostly small changes. Odds and ends, essentially." />
+    <MESSAGE value="Fundamental reworking and simplification of the codebase before other stuff happens." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fundamental reworking and simplification of the codebase before other stuff happens." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1582038390038">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="215" width="800" height="671" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1582038390038" />
+    <state x="638" y="338" width="633" height="424" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582134149197">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="638" y="338" width="633" height="424" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582134149197" />
     <state x="768" y="272" width="374" height="556" key="#com.intellij.ide.util.MemberChooser" timestamp="1580933553137">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -165,22 +173,22 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="690" y="379" width="529" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.1053@0.27.1920.1053" timestamp="1582128068421" />
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582064867559">
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582140220843">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582064867559" />
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582140220843" />
     <state x="449" y="188" key="SettingsEditor" timestamp="1582129130623">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1582129130623" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582064868932">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582133945165">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582064868932" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582127473080">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582133945165" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582140095768">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582127473080" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582140095768" />
     <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582039930277">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -193,5 +201,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1582133522690" />
+    <state x="685" y="441" width="540" height="218" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1582140139445">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="685" y="441" width="540" height="218" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582140139445" />
   </component>
 </project>
