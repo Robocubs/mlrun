@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="Fundamental reworking and simplification of the codebase before other stuff happens.">
+    <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mlrun/loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/loggers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/loggers/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/loggers/colored.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/loggers/standard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +119,10 @@
       <workItem from="1582059732047" duration="3152000" />
       <workItem from="1582064834564" duration="2708000" />
       <workItem from="1582127473108" duration="9555000" />
-      <workItem from="1582140093362" duration="153000" />
+      <workItem from="1582140093362" duration="190000" />
+      <workItem from="1582142858858" duration="1298000" />
+      <workItem from="1582150430617" duration="1753000" />
+      <workItem from="1582217056859" duration="1369000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -143,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582133942410</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Mild bug fixes.">
+      <created>1582140264082</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582140264082</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,7 +170,8 @@
     <MESSAGE value="Big change: add averaging for FPS." />
     <MESSAGE value="Mostly small changes. Odds and ends, essentially." />
     <MESSAGE value="Fundamental reworking and simplification of the codebase before other stuff happens." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fundamental reworking and simplification of the codebase before other stuff happens." />
+    <MESSAGE value="Mild bug fixes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mild bug fixes." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1582038390038">
@@ -173,22 +190,23 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="690" y="379" width="529" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.1053@0.27.1920.1053" timestamp="1582128068421" />
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582140220843">
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2" timestamp="1582140264007">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582140220843" />
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582140264007" />
     <state x="449" y="188" key="SettingsEditor" timestamp="1582129130623">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1582129130623" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582133945165">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582140273971">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582133945165" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582140095768">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582140273971" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582217057367">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582140095768" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582217057367" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582150431322" />
     <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582039930277">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

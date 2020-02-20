@@ -10,60 +10,26 @@ import json
 import logging
 import os
 import sys
-import pkg_resources
 
 # Type hinting only
 from logging import Logger
 from typing import Dict, List
 
 # Local imports
-from mlrun import strings, config
-
-# Create individual loggers for each segment of the program.
-l: Dict[str, Logger] = {
-    "mlrun": logging.getLogger("mlrun"),
-    "tf": logging.getLogger("tf"),
-    "cv2": logging.getLogger("cv2"),
-    "nt": logging.getLogger("nt")
-}
-
-###########################################################################
-# Start logging below, because the logger isn't loaded before this point. #
-###########################################################################
-
-# Enable colored logging if the `coloredlogs` module is available.
-try:
-    # PyCharm is unhappy here because I don't import coloredlogs in the except as well.
-    # But that defeats the point of this import guard.
-    # noinspection PyUnresolvedReferences
-    import coloredlogs
-
-    # Install colored logging hook onto each of our loggers. Powered by the magic of dictionary-list hybrid
-    # comprehensions!
-    [coloredlogs.install(
-        level="DEBUG",
-        logger=l[i],
-        fmt="%(name)s %(levelname)s %(message)s"
-    ) for i in l.keys()]
-except ImportError:
-    # Issue a warning, but continue on without colored logging if the module is missing.
-    l["mlrun"].warning(strings.warning_coloredlogs)
-
-# Disable TensorFlow mixed logging. This is important because TensorFlow will start logging random Python-based
-# messages without this line.
-logging.getLogger("tensorflow").setLevel(logging.FATAL)
-# The pipeline should immediately be enabled if this is set. Will be moved to a config variable eventually.
-pipelineEnabled: bool = True
+from mlrun import strings, config, loader
 
 # Determine the number of arguments.
 if len(sys.argv) == 2:
     # Load the configuration.
     config = config.configurations[sys.argv[1]]
     # Make some aliases for readability's sake.
+    logger_name: str = config["logger"]
     deprecation: bool = config["tf"]["deprecation"]
     level: int = config["tf"]["level"]
     compat: bool = config["tf"]["compat"]
     path: str = config["tf"]["path"]
+    min_score: float = config["tf"]["min_score"]
+    max_score: float = config["tf"]["max_score"]
     camera: Dict[str, int] = config["cam"]
     nt: bool = config["nt"]["enabled"]
     team: int = config["nt"]["team"]
@@ -72,12 +38,30 @@ if len(sys.argv) == 2:
     dlog: bool = config["debug"]["logs"]
     dshow: bool = config["debug"]["show"]
 else:
-    l["mlrun"].error(strings.error_wrong_arguments)
+    print(f"ERROR! {strings.error_wrong_arguments}")
     sys.exit(1)
 
 #######################################################################################################
 # All things requiring configuration go below here. The configuration isn't loaded before this point. #
 #######################################################################################################
+
+# Create individual loggers for each segment of the program.
+l: Dict[str, Logger] = {
+    "mlrun": loader.load_logger(logger_name)(logging.getLogger("mlrun")),
+    "tf": loader.load_logger(logger_name)(logging.getLogger("tf")),
+    "cv2": loader.load_logger(logger_name)(logging.getLogger("cv2")),
+    "nt": loader.load_logger(logger_name)(logging.getLogger("nt"))
+}
+
+###########################################################################
+# Start logging below, because the logger isn't loaded before this point. #
+###########################################################################
+
+# Disable TensorFlow mixed logging. This is important because TensorFlow will start logging random Python-based
+# messages without this line.
+logging.getLogger("tensorflow").setLevel(logging.FATAL)
+# The pipeline should immediately be enabled if this is set. Will be moved to a config variable eventually.
+pipelineEnabled: bool = True
 
 l["mlrun"].info(strings.mlrun_started)
 
@@ -96,7 +80,8 @@ elif dlog and dshow:
 # If configured to do so, hide TensorFlow deprecation messages.
 # Note that this is a private undocumented API, and may disappear at any time.
 try:
-    if pkg_resources.get_distribution("tensorflow").version.split(".")[0] > 1:
+    from tensorflow import __version__ as tf_version
+    if int(tf_version.split(".")[0]) > 1:
         l["tf"].info(strings.tensorflow_deprecation_irrelevant)
     else:
         if not deprecation:
@@ -247,7 +232,7 @@ try:
             boxes = inferred[1].tolist()[0]
             detections = []
             for i in range(len(scores)):
-                if (scores[i] > 0.8) and (scores[i] <= 1.0):
+                if (scores[i] > min_score) and (scores[i] <= max_score):
                     ymin = int(max(1, (boxes[i][0] * frame.shape[0])))
                     xmin = int(max(1, (boxes[i][1] * frame.shape[1])))
                     ymax = int(min(frame.shape[0], (boxes[i][2] * frame.shape[0])))
@@ -258,9 +243,11 @@ try:
                     average_fps.append(fps)
                     detections.append([xmin, ymin, xmax, ymax, round(100 * scores[i], 1)])
             if dlog:
-                for i in detections:
-                    l["mlrun"].debug(strings.debug_log.format(fps=round(fps, 1), xmin=i[0], ymin=i[1], xmax=i[2],
-                                                              ymax=i[3]))
+                l["mlrun"].debug(json.dumps({
+                    "fps": round(fps, 1),
+                    "numDetections": len(detections),
+                    "detections": detections
+                }))
             if dshow:
                 for i in detections:
                     cv2.rectangle(frame, (i[0], i[1]), (i[2], i[3]), (255, 0, 0), 2)
