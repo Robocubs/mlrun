@@ -12,13 +12,13 @@ class BaseLogger(ABC):
     All logging handlers should implement this logger.
     """
 
-    def __init__(self, logger: Logger):
+    def __init__(self, *args, **kwargs):
         """
         Set up the logger.
         Args:
             logger: Logger to set up.
         """
-        self.logger = logger
+        pass
 
     @abstractmethod
     def debug(self, msg: str, *args, **kwargs):
@@ -34,7 +34,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def info(self, msg: str, *args: str, **kwargs: int):
+    def info(self, msg: str, *args, **kwargs):
         """
         Generate an info message in the logger.
 
@@ -47,7 +47,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def warning(self, msg: str, *args: str, **kwargs: int):
+    def warning(self, msg: str, *args, **kwargs):
         """
         Generate a warning message in the logger.
 
@@ -60,7 +60,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def error(self, msg: str, *args: str, **kwargs: int):
+    def error(self, msg: str, *args, **kwargs):
         """
         Generate an error message in the logger.
 

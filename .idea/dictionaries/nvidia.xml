@@ -4,12 +4,16 @@
       <w>aarch</w>
       <w>asctime</w>
       <w>broadcasted</w>
+      <w>bytestring</w>
+      <w>capturer</w>
       <w>coloredlogs</w>
       <w>cython</w>
+      <w>deframed</w>
       <w>dshow</w>
       <w>fatals</w>
       <w>gast</w>
       <w>inferrer</w>
+      <w>inferrers</w>
       <w>jetson</w>
       <w>jsonschema</w>
       <w>keras</w>

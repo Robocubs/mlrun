@@ -10,8 +10,10 @@ class ColoredLogger(BaseLogger):
     """
     The colored logger class for MLRun.
     """
-    def __init__(self, logger: Logger):
+    def __init__(self, logger: Logger, max_level: str = "INFO"):
         super().__init__(logger)
+        self.max_level = max_level
+        self.logger = logger
         # Install coloredlogs hook, if it exists.
         try:
             import coloredlogs
@@ -33,7 +35,8 @@ class ColoredLogger(BaseLogger):
         Returns:
             Nothing, at least not in this case.
         """
-        self.logger.debug(msg, *args, **kwargs)
+        if self.max_level == "DEBUG":
+            self.logger.debug(msg, *args, **kwargs)
 
     def info(self, msg: str, *args: str, **kwargs: int):
         """
