@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 from abc import ABC
+from typing import Union
 
 import numpy as np
 
@@ -23,7 +24,7 @@ class OpenCVCamera(BaseCamera, ABC):
     Nothing special here!
     """
 
-    def __init__(self, camera: int = 0, width: int = 320, height: int = 240, fps: int = 30, *args, **kwargs):
+    def __init__(self, camera: int = 0, width: int = 320, height: int = 240, fps: int = 30, mode: str = "bytes"):
         """
         Initialize the capture.
         Args:
@@ -40,6 +41,7 @@ class OpenCVCamera(BaseCamera, ABC):
             self.logger.info(strings.opencv_loading)
             try:
                 import cv2
+                self.logger.info(strings.opencv_successful)
             except ImportError:
                 self.logger.error(strings.opencv_unsuccessful)
                 sys.exit(1)
@@ -48,8 +50,9 @@ class OpenCVCamera(BaseCamera, ABC):
             self.height = height
             self.fps = fps
             self.capture = None
+            self.mode = mode
         else:
-            self.logger.error(strings.error_nonexistant_camera.format(id=camera))
+            self.logger.error(strings.opencv_camera_error.format(cam=camera))
 
     def enable(self):
         """
@@ -58,7 +61,7 @@ class OpenCVCamera(BaseCamera, ABC):
             Nothing.
         """
         global cv2
-        self.capture = cv2.VideoCapture(0)
+        self.capture = cv2.VideoCapture(self.camera)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
         self.capture.set(cv2.CAP_PROP_FPS, self.fps)
@@ -73,11 +76,15 @@ class OpenCVCamera(BaseCamera, ABC):
         """
         self.capture.release()
 
-    def read(self) -> bytes:
+    def read(self) -> Union[bytes, np.ndarray]:
         """Return read frame."""
         ret, frame = self.capture.read()
-        if ret:
-            encoded = cv2.imencode(".jpg", frame)[1]
-            return encoded.tobytes()
+        if ret and self.mode == "bytes":
+            encoded = cv2.imencode(".jpg", frame)[1].tobytes()
+            return encoded
+        elif ret and self.mode == "ndarray":
+            return frame
+        elif not ret and self.mode == "ndarray":
+            return np.zeros((self.height, self.width, 3), dtype=np.int8)
         else:
             return np.zeros((self.height, self.width, 3), dtype=np.int8).tobytes()

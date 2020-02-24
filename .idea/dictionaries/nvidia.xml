@@ -10,6 +10,7 @@
       <w>cython</w>
       <w>deframed</w>
       <w>dshow</w>
+      <w>edgetpu</w>
       <w>fatals</w>
       <w>gast</w>
       <w>inferrer</w>
@@ -18,7 +19,9 @@
       <w>jsonschema</w>
       <w>keras</w>
       <w>levelname</w>
+      <w>libedgetpu</w>
       <w>mlrun</w>
+      <w>ndarray</w>
       <w>networktables</w>
       <w>nonexistant</w>
       <w>nvidia</w>
@@ -32,6 +35,7 @@
       <w>subschema</w>
       <w>tensorflow</w>
       <w>testresources</w>
+      <w>tflite</w>
       <w>threadable</w>
       <w>webcam</w>
       <w>xmax</w>

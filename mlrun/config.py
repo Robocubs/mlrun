@@ -21,15 +21,14 @@ configurations: ConfigurationDictionary = {
         },
         "camera": {
             "name": "opencv",
-            "id": 0,
+            "id": 2,
             "width": 320,
             "height": 240,
-            "fps": 30,
-            "file": "/home/nvidia/Videos/output/output.mp4"
+            "fps": 30
         },
         "engine": {
-            "name": "tensorflow",
-            "path": "/home/nvidia/Documents/Programming/Python/MLRun/v2",
+            "name": "tflite",
+            "path": "/home/nvidia/Documents/Programming/Python/MLRun/v2tpu",
             "min_score": 0.7
         },
         "publisher": {
@@ -51,13 +50,10 @@ configurations: ConfigurationDictionary = {
             "height": 240,
             "fps": 30
         },
-        "encoder": {
-            "name": "opencv"
-        },
         "engine": {
-            "name": "tensorflow",
-            "min_score": 0.7,
-            "max_score": 1.0
+            "name": "tflite",
+            "path": "/home/nvidia/Documents/Programming/Python/MLRun/v2tpu",
+            "min_score": 0.7
         },
         "publisher": {
             "name": "networktables",

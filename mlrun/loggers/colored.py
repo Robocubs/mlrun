@@ -10,7 +10,7 @@ class ColoredLogger(BaseLogger):
     """
     The colored logger class for MLRun.
     """
-    def __init__(self, logger: Logger, max_level: str = "INFO"):
+    def __init__(self, logger: Logger, max_level: str = "DEBUG"):
         super().__init__(logger)
         self.max_level = max_level
         self.logger = logger

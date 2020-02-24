@@ -17,5 +17,7 @@ coloredlogs==10.0
 jsonschema==3.2.0
 tensorflow-gpu<2; platform_machine == "x86_64"
 https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/tensorflow_gpu-1.15.0+nv20.1-cp36-cp36m-linux_aarch64.whl; platform_machine == "arm64" or platform_machine == "aarch64"
+https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_x86_64.whl; platform_machine == "x86_64"
+https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_aarch64.whl; platform_machine == "arm64" or platform_machine == "aarch64"
 opencv-contrib-python==4.2.0.32; platform_machine == "x86_64"
 pynetworktables==2020.0.2

@@ -2,7 +2,6 @@
 import logging
 import sys
 from abc import ABC
-from typing import Callable
 
 from mlrun import strings
 from mlrun.loader import load_logger
@@ -13,6 +12,7 @@ from _pynetworktables import NetworkTable
 from _pynetworktables._impl.structs import ConnectionInfo
 
 NetworkTables = None
+
 
 class NetworkTablesPublisher(BasePublisher, ABC):
     """Allows for publishing values to NetworkTables."""
@@ -45,10 +45,10 @@ class NetworkTablesPublisher(BasePublisher, ABC):
         self.logger.info(strings.networktables_loading)
         try:
             from networktables import NetworkTables
+            self.logger.info(strings.networktables_successful)
         except ImportError:
-            self.logger.error(strings.networktables_unexpected_disable)
+            self.logger.error(strings.networktables_unsuccessful)
             sys.exit(1)
-        self.logger.info(strings.networktables_successful)
         NetworkTables.addConnectionListener(self._connection_listener, True)
         NetworkTables.initialize(server=f"roborio-{self.team}-frc.local")
         self.table: NetworkTable = NetworkTables.getTable(self.table_name)

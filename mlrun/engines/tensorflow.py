@@ -50,7 +50,7 @@ class TensorFlowEngine(BaseEngine, ABC):
             # noinspection PyUnresolvedReferences
             import tensorflow.compat.v1 as tf
         except ImportError:
-            self.logger.error(strings.tensorflow_legacy_error)
+            self.logger.error(strings.tensorflow_error)
             sys.exit(1)
         self.graph = tf.Graph()
         self.session = tf.Session(graph=self.graph)
@@ -84,6 +84,6 @@ class TensorFlowEngine(BaseEngine, ABC):
         Returns:
             A list containing the raw TensorFlow output.
         """
-        return self.session.run(["detection_scores:0", "detection_boxes:0"], feed_dict={
+        return list(zip(*[i.tolist()[0] for i in self.session.run(["detection_scores:0", "detection_boxes:0"], feed_dict={
             "encoded_image_string_tensor:0": [image]
-        })
+        })]))

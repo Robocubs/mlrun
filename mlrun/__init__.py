@@ -56,11 +56,11 @@ l.info(strings.mlrun_started)
 
 # Load the configured camera instance for reading.
 cam = loader.load_camera(camera_config["name"])(
-    id=camera_config["id"],
+    camera=camera_config["id"],
     width=camera_config["width"],
     height=camera_config["height"],
     fps=camera_config["fps"],
-    file=camera_config["file"]
+    mode="bytes" if engine_config["name"] == "tensorflow" else "ndarray"
 )
 # Enable the camera.
 cam.enable()
@@ -100,11 +100,7 @@ try:
         t1 = getTickCount()
         rx.start(lambda: cam.read()).pipe(
             # Input the image into the neural network.
-            op.map(lambda byte_encoded: engine.infer(byte_encoded)),
-            # Reshape the data into a usable construct.
-            op.map(lambda raw_infer: [i.tolist()[0] for i in raw_infer]),
-            # Zip the newly decoded contents.
-            op.map(lambda unzipped: list(zip(*unzipped))),
+            op.map(lambda image: engine.infer(image)),
             # Filter the items that don't match our required quality.
             # This filter is so freaking annoying... it's really hard to explain and difficult to optimize!
             op.map(lambda unfiltered: [
@@ -133,7 +129,7 @@ try:
             # Add to average FPS
             op.map(lambda output: (avg_fps.append(json.loads(output)["fps"]), output)[-1]),
             # Write to NetworkTables
-            op.map(lambda output: (sd.putString(f"{prefix}/detections", output) if nt else None, print(output))[0])
+            op.map(lambda output: (sd.putString(f"{prefix}/detections", output) if nt else None, l.debug(output))[-1])
         ).run()
 
     l.info(strings.stopped_nt)
