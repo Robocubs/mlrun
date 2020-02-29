@@ -34,6 +34,7 @@ class OpenCVCamera(BaseCamera, ABC):
             fps: The expected amount of frames to be returned each second. Defaults to 30.
         """
         global cv2
+        super().__init__(self)
         # noinspection PyTypeChecker
         self.logger_name: str = configurations["desktop"]["logger"]["name"]
         self.logger = load_logger(self.logger_name)(logging.getLogger("cv2"))

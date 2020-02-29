@@ -22,21 +22,22 @@ def get_package(package_name: str, must_implement: str) -> Dict[str, str]:
     spec = importlib.util.find_spec(package_name)
     if spec is None:
         return {}
-    pathname = Path(spec.origin).parent
-    ret = {}
-    with os.scandir(pathname) as entries:
-        for entry in entries:
-            if entry.name.startswith("__"):
-                continue
-            current = ".".join((package_name, entry.name.partition(".")[0]))
-            if entry.is_file():
-                if entry.name.endswith(".py"):
-                    if "base" not in entry.name:
-                        module_info = pyclbr.readmodule(current)
-                        for value in module_info.values():
-                            if value.super[0] == must_implement:
-                                ret[current.split(".")[2]] = value.name
-    return ret
+    else:
+        pathname = Path(spec.origin).parent
+        ret = {}
+        with os.scandir(pathname) as entries:
+            for entry in entries:
+                if entry.name.startswith("__"):
+                    continue
+                current = ".".join((package_name, entry.name.partition(".")[0]))
+                if entry.is_file():
+                    if entry.name.endswith(".py"):
+                        if "base" not in entry.name:
+                            module_info = pyclbr.readmodule(current)
+                            for value in module_info.values():
+                                if value.super[0] == must_implement:
+                                    ret[current.split(".")[2]] = value.name
+        return ret
 
 
 def load_logger(name: str) -> Callable:

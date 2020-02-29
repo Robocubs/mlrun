@@ -84,6 +84,9 @@ class TensorFlowEngine(BaseEngine, ABC):
         Returns:
             A list containing the raw TensorFlow output.
         """
-        return list(zip(*[i.tolist()[0] for i in self.session.run(["detection_scores:0", "detection_boxes:0"], feed_dict={
-            "encoded_image_string_tensor:0": [image]
-        })]))
+        return list(zip(*[i.tolist()[0] for i in self.session.run(
+            ["detection_scores:0", "detection_boxes:0"],
+            feed_dict={
+                "encoded_image_string_tensor:0": [image]
+            }
+        )]))

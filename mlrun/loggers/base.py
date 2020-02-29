@@ -3,7 +3,6 @@ This file defines the base logger class for MLRun.
 All logging handlers should implement this logger.
 """
 from abc import ABC, abstractmethod
-from logging import Logger
 
 
 class BaseLogger(ABC):

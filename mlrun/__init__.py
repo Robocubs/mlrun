@@ -12,7 +12,7 @@ import sys
 
 # Non-guarded imports
 import rx
-from cv2 import getTickFrequency, getTickCount
+from cv2 import getTickFrequency, getTickCount  # type: ignore
 from rx import operators as op
 
 # Local imports
@@ -22,24 +22,25 @@ from mlrun import strings, config, loader
 if len(sys.argv) == 2:
     # Load the configuration.
     if config.configurations[sys.argv[1]]:
-        config = config.configurations[sys.argv[1]]
+        loaded_config = config.configurations[sys.argv[1]]  # type: ignore
     else:
         print(strings.warning_config_name)
-        config = config.configurations["desktop"]
-    # Make some aliases for readability's sake.
-    logger_config: dict = config["logger"]
-    camera_config: dict = config["camera"]
-    engine_config: dict = config["engine"]
-    publisher_config: dict = config["publisher"]
+        loaded_config = config.configurations["desktop"]  # type: ignore
 else:
     print(strings.warning_config_name)
-    config = config.configurations["desktop"]
+    loaded_config = config.configurations["desktop"]
+
+# Make some aliases for readability's sake.
+logger_config: dict = loaded_config["logger"]
+camera_config: dict = loaded_config["camera"]
+engine_config: dict = loaded_config["engine"]
+publisher_config: dict = loaded_config["publisher"]
 
 #######################################################################################################
 # All things requiring configuration go below here. The configuration isn't loaded before this point. #
 #######################################################################################################
 
-l = loader.load_logger(logger_config["name"])(
+logger = loader.load_logger(logger_config["name"])(
     logging.getLogger("mlrun"),
     max_level=logger_config["max_level"]
 )
@@ -52,7 +53,7 @@ logging.getLogger("tensorflow").setLevel(logging.FATAL)
 # Start logging below, because the logger isn't loaded before this point. #
 ###########################################################################
 
-l.info(strings.mlrun_started)
+logger.info(strings.mlrun_started)
 
 # Load the configured camera instance for reading.
 cam = loader.load_camera(camera_config["name"])(
@@ -93,7 +94,7 @@ try:
         sd.putBoolean(f"{prefix}/enabled", True)
     while True:
         # This is already set above, but we need to refresh it constantly.
-        nt: bool = publisher.is_connected()
+        nt: bool = publisher.is_connected()  # type: ignore
         # Begin process of inference.
         if nt and sd.getBoolean(f"{prefix}/enabled", True):
             continue
@@ -127,18 +128,19 @@ try:
                 "detections": processed
             })),
             # Add to average FPS
-            op.map(lambda output: (avg_fps.append(json.loads(output)["fps"]), output)[-1]),
+            op.map(lambda output: (avg_fps.append(json.loads(output)["fps"]), output)[-1]),  # type: ignore
             # Write to NetworkTables
-            op.map(lambda output: (sd.putString(f"{prefix}/detections", output) if nt else None, l.debug(output))[-1])
+            op.map(lambda output: (sd.putString(f"{prefix}/detections", output) if nt else None,
+                                   logger.debug(output))[-1])
         ).run()
 
-    l.info(strings.stopped_nt)
+    logger.info(strings.stopped_nt)
     if nt:
         sd.putBoolean(f"{prefix}/enabled", False)
 except KeyboardInterrupt:
-    l.warning(strings.stopped_keyboard)
+    logger.warning(strings.stopped_keyboard)
     if len(avg_fps) > 1:
-        l.info(f"Average FPS: {round(sum(avg_fps)/len(avg_fps), 1)}")
+        logger.info(f"Average FPS: {round(sum(avg_fps) / len(avg_fps), 1)}")
     sd.putBoolean(f"{prefix}/enabled", False)
     cam.disable()
     engine.disable()
