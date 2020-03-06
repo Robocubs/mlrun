@@ -3,6 +3,7 @@
 This file defines your configuration for MLRun. When running MLRun, pass a configuration name as the first argument.
 """
 from typing import Dict, Union
+import os
 
 # Define type aliases to make reading the types less complicated.
 # This is somewhat stupid, because it allows for non-specific typings of configuration objects.
@@ -19,23 +20,27 @@ configurations: ConfigurationDictionary = {
             "max_level": "DEBUG"
         },
         "camera": {
-            "name": "opencv",
+            "name": "file",
             "id": 0,
-            "width": 320,
-            "height": 240,
-            "fps": 30
+            "width": 1280,
+            "height": 720,
+            "fps": 30,
+            "file": "/home/nvidia/demo_videos/720p.mkv"
         },
         "engine": {
-            "name": "tflite",
-            "path": "/home/nvidia/Documents/Programming/Python/MLRun/v2tpu",
-            "min_score": 0.7
+            "name": "tensorflow",
+            "path": "/home/nvidia/Documents/Programming/Python/MLRun/mlrun/models/v1",
+            "min_score": 0.7,
+            "width": 1280,
+            "height": 720
         },
         "publisher": {
             "name": "networktables",
             "team": 1701,
             "table": "SmartDashboard",
             "prefix": "jetson"
-        }
+        },
+        "show": True
     },
     "jetson": {
         "logger": {
@@ -51,14 +56,17 @@ configurations: ConfigurationDictionary = {
         },
         "engine": {
             "name": "tflite",
-            "path": "/home/nvidia/Documents/Programming/Python/MLRun/v2tpu",
-            "min_score": 0.7
+            "path": "/home/nvidia/mlrun/models/v2tpu",
+            "min_score": 0.7,
+            "width": 192,
+            "height": 192
         },
         "publisher": {
             "name": "networktables",
             "team": 1701,
             "table": "SmartDashboard",
             "prefix": "jetson"
-        }
+        },
+        "show": False
     }
 }

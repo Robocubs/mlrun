@@ -5,9 +5,6 @@ import logging
 import os
 import sys
 from abc import ABC
-from typing import Union
-
-import numpy as np
 
 from mlrun.loader import load_logger
 from mlrun.config import configurations
@@ -17,28 +14,25 @@ from mlrun.cameras.base import BaseCamera
 cv2 = None
 
 
-class OpenCVCamera(BaseCamera, ABC):
+class FileCamera(BaseCamera, ABC):
     """
-    OpenCV-based camera system.
+    File-based camera system.
 
     Nothing special here!
     """
 
-    def __init__(self, camera: int = 0, width: int = 320, height: int = 240, fps: int = 30):
+    def __init__(self, file: str = "/home/nvidia/demo.mp4"):
         """
         Initialize the capture.
         Args:
-            camera: The camera ID to capture. Defaults to zero.
-            width: The expected width of the returned frame. Defaults to 320.
-            height: The expected height of the returned frame. Defaults to 240.
-            fps: The expected amount of frames to be returned each second. Defaults to 30.
+            file: The file to capture. Defaults to a random path.
         """
         global cv2
         super().__init__(self)
         # noinspection PyTypeChecker
         self.logger_name: str = configurations["desktop"]["logger"]["name"]
         self.logger = load_logger(self.logger_name)(logging.getLogger("cv2"))
-        if os.path.exists(f"/dev/video{camera}"):
+        if os.path.exists(file):
             self.logger.info(strings.opencv_loading)
             try:
                 import cv2
@@ -46,13 +40,10 @@ class OpenCVCamera(BaseCamera, ABC):
             except ImportError:
                 self.logger.error(strings.opencv_unsuccessful)
                 sys.exit(1)
-            self.camera = camera
-            self.width = width
-            self.height = height
-            self.fps = fps
+            self.file = file
             self.capture = None
         else:
-            self.logger.error(strings.opencv_camera_error.format(cam=camera))
+            self.logger.error(strings.opencv_camera_error.format(cam=file))
 
     def enable(self):
         """
@@ -61,12 +52,9 @@ class OpenCVCamera(BaseCamera, ABC):
             Nothing.
         """
         global cv2
-        self.capture = cv2.VideoCapture(self.camera)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
-        self.capture.set(cv2.CAP_PROP_FPS, self.fps)
+        self.capture = cv2.VideoCapture(self.file)
         if not self.capture.isOpened():
-            self.logger.error(strings.error_camera_fault.format(id=self.camera))
+            self.logger.error(strings.error_camera_fault.format(id=self.file))
 
     def disable(self):
         """
@@ -76,10 +64,10 @@ class OpenCVCamera(BaseCamera, ABC):
         """
         self.capture.release()
 
-    def read(self) -> np.ndarray:
+    def read(self) -> bytes:
         """Return read frame."""
         ret, frame = self.capture.read()
         if ret:
             return frame
         else:
-            return np.zeros((self.height, self.width, 3), dtype=np.int8)
+            self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)

@@ -64,8 +64,12 @@ class TFLiteEngine(BaseEngine, ABC):
         """
         # Now make a delegate if it worked.
         if self.tpu:
-            self.interpreter = Interpreter(model_path=self.full_path,
-                                           experimental_delegates=[load_delegate("libedgetpu.so.1.0")])
+            try:
+                self.interpreter = Interpreter(model_path=self.full_path,
+                                               experimental_delegates=[load_delegate("libedgetpu.so.1.0")])
+            except ValueError:
+                self.logger.error("Failed to load Edge TPU delegate. Is your Coral Accelerator attached?")
+                sys.exit(1)
         else:
             self.interpreter = Interpreter(model_path=self.full_path)
         self.interpreter.allocate_tensors()
@@ -83,8 +87,13 @@ class TFLiteEngine(BaseEngine, ABC):
         """
         Run inference.
         """
-        image = np.expand_dims(cv2.cvtColor(cv2.resize(image, (self.image_size[0], self.image_size[1])),
-                                            cv2.COLOR_BGR2RGB), axis=0)
+        image = np.expand_dims(
+            cv2.resize(
+                image,
+                (self.image_size[0], self.image_size[1])
+            )[:, :, ::-1],
+            axis=0
+        )
         self.interpreter.set_tensor(self.input_details[0]["index"], image)
         self.interpreter.invoke()
         return list(zip(*[

@@ -3,19 +3,24 @@
     <words>
       <w>aarch</w>
       <w>asctime</w>
+      <w>boundscheck</w>
       <w>broadcasted</w>
       <w>bytestring</w>
       <w>capturer</w>
+      <w>cdivision</w>
       <w>coloredlogs</w>
       <w>cython</w>
+      <w>cythonized</w>
       <w>deframed</w>
       <w>dshow</w>
       <w>edgetpu</w>
+      <w>embedsignature</w>
       <w>fatals</w>
       <w>gast</w>
       <w>inferrer</w>
       <w>inferrers</w>
       <w>jetson</w>
+      <w>jsonified</w>
       <w>jsonschema</w>
       <w>keras</w>
       <w>levelname</w>
@@ -23,12 +28,14 @@
       <w>mlrun</w>
       <w>ndarray</w>
       <w>networktables</w>
+      <w>nify</w>
       <w>nonexistant</w>
       <w>nvidia</w>
       <w>opencv</w>
       <w>preprocessing</w>
       <w>protobuf</w>
       <w>pynetworktables</w>
+      <w>pyzmq</w>
       <w>resizer</w>
       <w>robo</w>
       <w>roborio</w>
@@ -42,6 +49,7 @@
       <w>xmin</w>
       <w>ymax</w>
       <w>ymin</w>
+      <w>zeromq</w>
     </words>
   </dictionary>
 </component>

@@ -5,19 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildext.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/cameras/file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/publishers/debugger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/simple_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/util.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/util.pyx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/cameras/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/cameras/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/cameras/opencv.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/cameras/opencv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/engines/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/engines/tensorflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tensorflow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/loggers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/loggers/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/loggers/colored.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/colored.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/loggers/standard.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/standard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/publishers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/publishers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/engines/tflite.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tflite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v1/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1/saved_model.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v1tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1tpu/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v1tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1tpu/model_edgetpu.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v1tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1tpu/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2/saved_model.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2tpu/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2tpu/model_edgetpu.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2tpu/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3/model.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3/model.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3tpu/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3tpu/model_edgetpu.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v3tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3tpu/tflite_metadata.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +79,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -69,9 +91,14 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mlrun/models" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.__init__">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MLRun" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,9 +121,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="util.pyx" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MLRun" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mlrun" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mlrun/util.pyx" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.util.pyx" />
       </list>
     </recent_temporary>
   </component>
@@ -139,6 +189,14 @@
       <workItem from="1582571180696" duration="341000" />
       <workItem from="1582574906653" duration="5505000" />
       <workItem from="1582662949834" duration="1913000" />
+      <workItem from="1583344202721" duration="129000" />
+      <workItem from="1583353633661" duration="3033000" />
+      <workItem from="1583415638883" duration="3015000" />
+      <workItem from="1583418664456" duration="1416000" />
+      <workItem from="1583420089932" duration="17465000" />
+      <workItem from="1583512186580" duration="11233000" />
+      <workItem from="1583523938832" duration="676000" />
+      <workItem from="1583527053218" duration="511000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -202,7 +260,11 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems." />
     <MESSAGE value="Big change: add averaging for FPS." />
     <MESSAGE value="Mostly small changes. Odds and ends, essentially." />
@@ -222,10 +284,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582310867090" />
-    <state x="638" y="338" width="633" height="424" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582134149197">
+    <state x="638" y="338" width="818" height="412" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583523913614">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="638" y="338" width="633" height="424" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582134149197" />
+    <state x="638" y="338" width="818" height="412" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1583523913614" />
     <state x="768" y="272" width="374" height="556" key="#com.intellij.ide.util.MemberChooser" timestamp="1580933553137">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -243,24 +305,24 @@
     </state>
     <state x="509" y="54" width="915" height="993" key="CommitChangelistDialog2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582322866111" />
     <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582579797774" />
-    <state x="449" y="188" key="SettingsEditor" timestamp="1582575156206">
+    <state x="449" y="188" key="SettingsEditor" timestamp="1583523929436">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1582575156206" />
+    <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1583523929436" />
     <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582579800663">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="285" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582322869703" />
     <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582579800663" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1582662950502">
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1583527053175">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582323175307" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582662950502" />
-    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582296877018">
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1583527053175" />
+    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1583515423811">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582296877018" />
+    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1583515423811" />
     <state x="1210" y="464" width="450" height="172" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582045449417">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -277,5 +339,8 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="685" y="441" width="540" height="218" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582140139445" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MLRun$util_pyx.coverage" NAME="util.pyx Coverage Results" MODIFIED="1583425246575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlrun" />
   </component>
 </project>

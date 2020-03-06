@@ -8,6 +8,8 @@ from abc import ABC
 import logging
 from typing import List
 
+import cv2
+
 from mlrun import strings
 from mlrun.config import configurations
 from mlrun.loader import load_logger
@@ -87,6 +89,6 @@ class TensorFlowEngine(BaseEngine, ABC):
         return list(zip(*[i.tolist()[0] for i in self.session.run(
             ["detection_scores:0", "detection_boxes:0"],
             feed_dict={
-                "encoded_image_string_tensor:0": [image]
+                "encoded_image_string_tensor:0": [cv2.imencode(".jpg", image)[1].tobytes()]
             }
         )]))
