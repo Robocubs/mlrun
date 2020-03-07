@@ -9,6 +9,7 @@
       <w>capturer</w>
       <w>cdivision</w>
       <w>coloredlogs</w>
+      <w>ctype</w>
       <w>cython</w>
       <w>cythonized</w>
       <w>deframed</w>
@@ -32,6 +33,7 @@
       <w>nonexistant</w>
       <w>nvidia</w>
       <w>opencv</w>
+      <w>powercell</w>
       <w>preprocessing</w>
       <w>protobuf</w>
       <w>pynetworktables</w>

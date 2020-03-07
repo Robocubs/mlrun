@@ -11,10 +11,10 @@ from typing import Callable, Union
 import cv2
 import numpy as np
 
-from mlrun import strings
+from mlrun import strings, loader
 from mlrun.config import configurations
 from mlrun.engines.base import BaseEngine
-from mlrun.loader import load_logger
+from mlrun.loader import ComponentType
 
 Interpreter: Union[None, Callable] = None
 load_delegate: Union[None, Callable] = None
@@ -25,15 +25,21 @@ class TFLiteEngine(BaseEngine, ABC):
     A TensorFlow Lite inferrer for MLRun.
     """
 
-    def __init__(self, saved_model_path: str):
+    def __init__(self, path: str = ""):
         global Interpreter
         global load_delegate
         super().__init__(self)
         self.logger_name: str = configurations["desktop"]["logger"]["name"]
-        self.logger = load_logger(self.logger_name)(logging.getLogger("tflite"))
+        self.logger = loader.load_component(
+            ComponentType.LOGGER,
+            self.logger_name
+        )(
+            logger=logging.getLogger("tflite"),
+            max_level="DEBUG"
+        )
         self.tpu = False
         self.interpreter = None
-        self.model = saved_model_path
+        self.model = path
         self.full_path = ""
         self.input_details = None
         self.output_details = None

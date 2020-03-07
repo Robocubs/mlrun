@@ -3,8 +3,8 @@ import logging
 import sys
 from abc import ABC
 
-from mlrun import strings
-from mlrun.loader import load_logger
+from mlrun import strings, loader
+from mlrun.loader import ComponentType
 from mlrun.config import configurations
 from mlrun.publishers.base import BasePublisher
 
@@ -30,8 +30,11 @@ class NetworkTablesPublisher(BasePublisher, ABC):
         self.table_name = table
         self.prefix = prefix
         self.table = None
-        self.logger = load_logger(configurations["desktop"]["logger"]["name"])(
-            logging.getLogger("nt"),
+        self.logger = loader.load_component(
+            ComponentType.LOGGER,
+            configurations["desktop"]["logger"]["name"]
+        )(
+            logger=logging.getLogger("nt"),
             max_level="DEBUG"
         )
 

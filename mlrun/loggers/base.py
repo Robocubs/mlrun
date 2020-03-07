@@ -70,3 +70,15 @@ class BaseLogger(ABC):
             Nothing, at least not in this case.
         """
         pass
+
+    @abstractmethod
+    def setLevel(self, level: str):
+        """
+        Set the minimum level on the logger.
+        Args:
+            level: One of DEBUG, INFO, WARNING, ERROR, or FATAL
+
+        Returns:
+            Nothing
+        """
+        pass

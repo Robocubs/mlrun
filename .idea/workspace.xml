@@ -5,40 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/cameras/file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/publishers/debugger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/simple_util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/util.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/util.pyx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildext.py" beforeDir="false" afterPath="$PROJECT_DIR$/buildext.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/cameras/file.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/cameras/file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/cameras/opencv.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/cameras/opencv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/engines/tensorflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tensorflow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/engines/tflite.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tflite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/loggers/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/loggers/colored.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/colored.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/loggers/standard.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/loggers/standard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/publishers/debugger.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/cameras/deepstream.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/publishers/networktables.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/publishers/networktables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/simple_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/simple_util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v1/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v1tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1tpu/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v1tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1tpu/model_edgetpu.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v1tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v1tpu/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2tpu/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2tpu/model_edgetpu.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v2tpu/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/model.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3/model.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3tpu/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3tpu/model_edgetpu.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/models/v3tpu/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +53,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Nicholas Hubbard &lt;hubbardn95@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XOalDTuHKrTLmsgZtW7fPfhy97" />
@@ -196,7 +187,8 @@
       <workItem from="1583420089932" duration="17465000" />
       <workItem from="1583512186580" duration="11233000" />
       <workItem from="1583523938832" duration="676000" />
-      <workItem from="1583527053218" duration="511000" />
+      <workItem from="1583527053218" duration="1905000" />
+      <workItem from="1583590894001" duration="9752000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -254,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582579797849</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Tons of changes! I'm an idiot for not splitting these up into different commits...">
+      <created>1583527634580</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1583527634580</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +272,8 @@
     <MESSAGE value="Modularize logging subsystem." />
     <MESSAGE value="Modularize all the subsystems. Convert pipeline to RxPython. My brain hurts." />
     <MESSAGE value="Fixes all over the place. Added Coral AI support. Mind blown over how fast this tiny thing is" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes all over the place. Added Coral AI support. Mind blown over how fast this tiny thing is" />
+    <MESSAGE value="Tons of changes! I'm an idiot for not splitting these up into different commits..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tons of changes! I'm an idiot for not splitting these up into different commits..." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1582663067776">
@@ -300,25 +300,25 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="690" y="379" width="529" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.1053@0.27.1920.1053" timestamp="1582662977218" />
-    <state x="509" y="54" width="915" height="993" key="CommitChangelistDialog2" timestamp="1582579797774">
+    <state x="509" y="54" width="915" height="993" key="CommitChangelistDialog2" timestamp="1583527634300">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="509" y="54" width="915" height="993" key="CommitChangelistDialog2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582322866111" />
-    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582579797774" />
+    <state x="509" y="54" width="891" height="993" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1583527634300" />
     <state x="449" y="188" key="SettingsEditor" timestamp="1583523929436">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1583523929436" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1582579800663">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2" timestamp="1583527644129">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="285" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582322869703" />
-    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582579800663" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1583527053175">
+    <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1583527644129" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1583590895188">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582323175307" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1583527053175" />
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1583590895188" />
     <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1583515423811">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

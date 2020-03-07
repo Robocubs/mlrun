@@ -17,7 +17,7 @@ configurations: ConfigurationDictionary = {
     "desktop": {
         "logger": {
             "name": "colored",
-            "max_level": "DEBUG"
+            "max_level": "INFO"
         },
         "camera": {
             "name": "file",
@@ -25,12 +25,12 @@ configurations: ConfigurationDictionary = {
             "width": 1280,
             "height": 720,
             "fps": 30,
-            "file": "/home/nvidia/demo_videos/720p.mkv"
+            "file": "/home/nvidia/demo_videos/720p.mp4"
         },
         "engine": {
             "name": "tensorflow",
             "path": "/home/nvidia/Documents/Programming/Python/MLRun/mlrun/models/v1",
-            "min_score": 0.7,
+            "min_score": 0.3,
             "width": 1280,
             "height": 720
         },

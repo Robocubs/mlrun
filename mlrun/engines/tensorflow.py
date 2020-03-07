@@ -10,9 +10,9 @@ from typing import List
 
 import cv2
 
-from mlrun import strings
+from mlrun import strings, loader
 from mlrun.config import configurations
-from mlrun.loader import load_logger
+from mlrun.loader import ComponentType
 from mlrun.engines.base import BaseEngine
 
 tf = None
@@ -22,20 +22,27 @@ class TensorFlowEngine(BaseEngine, ABC):
     """
     A TensorFlow inferrer for MLRun.
     """
-    def __init__(self, saved_model_path: str):
+    def __init__(self, path: str = ""):
         """
         Initialize the inference engine.
         Args:
-            saved_model_path: The fully qualified path to the saved model for inference.
+            path: The fully qualified path to the saved model for inference.
         """
         global tf
         super().__init__(self)
         # noinspection PyTypeChecker
         self.logger_name: str = configurations["desktop"]["logger"]["name"]
-        self.logger = load_logger(self.logger_name)(logging.getLogger("tf"))
-        if os.path.exists(saved_model_path + "/saved_model.pb"):
+        self.logger = loader.load_component(
+            ComponentType.LOGGER,
+            self.logger_name
+        )(
+            logger=logging.getLogger("tf"),
+            max_level="DEBUG"
+        )
+        os.environ.putenv("TF_CPP_MIN_LOG_LEVEL", "3")
+        if os.path.exists(path + "/saved_model.pb"):
             self.logger.info(strings.tensorflow_model_present)
-            self.model_path = saved_model_path
+            self.model_path = path
         else:
             self.logger.error(strings.tensorflow_model_missing)
             sys.exit(1)

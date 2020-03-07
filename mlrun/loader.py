@@ -7,6 +7,17 @@ import importlib.util
 from pathlib import Path
 import os
 import pyclbr
+from enum import Enum
+
+from mlrun import strings
+
+
+class ComponentType(Enum):
+    """Component types for generic loader."""
+    CAMERA = 0
+    ENGINE = 1
+    LOGGER = 2
+    PUBLISHER = 3
 
 
 def get_package(package_name: str, must_implement: str) -> Dict[str, str]:
@@ -40,77 +51,38 @@ def get_package(package_name: str, must_implement: str) -> Dict[str, str]:
         return ret
 
 
-def load_logger(name: str) -> Callable:
+def load_component(ctype: ComponentType, name: str) -> Callable:
     """
-    Load a logging class by name from it's file.
+    Load a component from it's file.
     Args:
-        name: Logger *file* name, not class name.
+        ctype: Type of component.
+        name: File name of component under a given category.
 
     Returns:
-        Instance of BaseLogger that the logger inherits from; it is a Callable function because of __init__.
+        The Callable init method of the class.
     """
+    if ctype == ComponentType.CAMERA:
+        singular = "camera"
+        package = "mlrun.cameras"
+        base = "BaseCamera"
+    elif ctype == ComponentType.ENGINE:
+        singular = "engine"
+        package = "mlrun.engines"
+        base = "BaseEngine"
+    elif ctype == ComponentType.LOGGER:
+        singular = "logger"
+        package = "mlrun.loggers"
+        base = "BaseLogger"
+    elif ctype == ComponentType.PUBLISHER:
+        singular = "publisher"
+        package = "mlrun.publishers"
+        base = "BasePublisher"
+
     if name == "base":
-        raise ImportError("You cannot import the base logger!")
-    loggers = get_package("mlrun.loggers", "BaseLogger")
-    for key, value in loggers.items():
+        raise ImportError(strings.error_base_import.format(component=singular))
+    components = get_package(package, base)
+    for key, value in components.items():
         if key == name:
-            logger_module = __import__(f"mlrun.loggers.{key}", fromlist=[value])
-            return getattr(logger_module, value)
-    raise ImportError(f"The requested logger, {name}, could not be found.")
-
-
-def load_camera(name: str) -> Callable:
-    """
-    Load a camera class by name from it's file.
-    Args:
-        name: Camera *file* name, not class name.
-
-    Returns:
-        Instance of BaseCamera that the camera class inherits from; it is a callable function.
-    """
-    if name == "base":
-        raise ImportError("You cannot import the base camera!")
-    cameras = get_package("mlrun.cameras", "BaseCamera")
-    for key, value in cameras.items():
-        if key == name:
-            camera_module = __import__(f"mlrun.cameras.{key}", fromlist=[value])
-            return getattr(camera_module, value)
-    raise ImportError(f"The requested camera, {name}, could not be found.")
-
-
-def load_engine(name: str) -> Callable:
-    """
-    Load an engine by name from it's file.
-    Args:
-        name: Engine *file* name, not class name.
-
-    Returns:
-        Instance of BaseEngine that the engine inherits from; it is a callable function.
-    """
-    if name == "base":
-        raise ImportError("You cannot import the base engine!")
-    engines = get_package("mlrun.engines", "BaseEngine")
-    for key, value in engines.items():
-        if key == name:
-            engine_module = __import__(f"mlrun.engines.{key}", fromlist=[value])
-            return getattr(engine_module, value)
-    raise ImportError(f"The requested engine, {name}, could not be found.")
-
-
-def load_publisher(name: str) -> Callable:
-    """
-    Load a publisher by name from its file.
-    Args:
-        name: Publisher *file* name, not class name.
-
-    Returns:
-        Instance of BasePublisher that the publisher inherits from; it is a callable function.
-    """
-    if name == "base":
-        raise ImportError("You cannot import the base publisher!")
-    publishers = get_package("mlrun.publishers", "BasePublisher")
-    for key, value in publishers.items():
-        if key == name:
-            publisher_module = __import__(f"mlrun.publishers.{key}", fromlist=[value])
-            return getattr(publisher_module, value)
-    raise ImportError(f"The requested publisher, {name}, could not be found.")
+            module = __import__(package + f".{key}", fromlist=[value])
+            return getattr(module, value)
+    raise ImportError(strings.error_component_not_found.format(component=singular, name=name))

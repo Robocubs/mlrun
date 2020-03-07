@@ -34,7 +34,9 @@ error_wrong_arguments: str = "Incorrect number of arguments.\nMLRun should be in
                              " [config_name]"
 error_camera_fault: str = "Camera ID /dev/video{id} did not provide any content when requested."
 error_nonexistant_config: str = "The provided configuration name does not exist. You may have to create it yet."
+error_base_import: str = "You cannot import the base {component}!"
+error_component_not_found: str = "The requested {component}, {name}, was not found."
 warning_coloredlogs: str = "Coloredlogs is not present; logs will be less readable and difficult to understand."
 warning_config_name: str = "WARNING: Configuration not specified; assuming \"desktop\" configuration."
-warning_show_debug: str = "WARNING! Showing the output from the pipeline in a window will dramatically reduce" \
+warning_show_debug: str = "WARNING! Showing the output from the pipeline in a window will dramatically reduce " \
                           "performance. You have been warned!"

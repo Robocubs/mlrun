@@ -6,9 +6,9 @@ import os
 import sys
 from abc import ABC
 
-from mlrun.loader import load_logger
+from mlrun import strings, loader
+from mlrun.loader import ComponentType
 from mlrun.config import configurations
-from mlrun import strings
 from mlrun.cameras.base import BaseCamera
 
 cv2 = None
@@ -31,7 +31,13 @@ class FileCamera(BaseCamera, ABC):
         super().__init__(self)
         # noinspection PyTypeChecker
         self.logger_name: str = configurations["desktop"]["logger"]["name"]
-        self.logger = load_logger(self.logger_name)(logging.getLogger("cv2"))
+        self.logger = loader.load_component(
+            ComponentType.LOGGER,
+            self.logger_name
+        )(
+            logger=logging.getLogger("cv2"),
+            max_level="DEBUG"
+        )
         if os.path.exists(file):
             self.logger.info(strings.opencv_loading)
             try:

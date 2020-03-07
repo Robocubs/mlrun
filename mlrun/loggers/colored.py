@@ -3,14 +3,14 @@ This file defines the colored logger class for MLRun.
 """
 from .base import BaseLogger
 from mlrun import strings
-from logging import Logger
+import logging
 
 
 class ColoredLogger(BaseLogger):
     """
     The colored logger class for MLRun.
     """
-    def __init__(self, logger: Logger, max_level: str = "DEBUG"):
+    def __init__(self, logger: logging.Logger = logging.getLogger(__name__), max_level: str = "DEBUG"):
         super().__init__(logger)
         self.max_level = max_level
         self.logger = logger
@@ -73,3 +73,14 @@ class ColoredLogger(BaseLogger):
             Nothing, at least not in this case.
         """
         self.logger.error(msg, *args, **kwargs)
+
+    def setLevel(self, level: str):
+        """
+        Set the minimum level on the logger.
+        Args:
+            level: One of DEBUG, INFO, WARNING, ERROR, or FATAL
+
+        Returns:
+            Nothing
+        """
+        self.logger.setLevel(level)

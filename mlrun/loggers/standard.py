@@ -3,14 +3,14 @@ This file defines the most simple logger class for MLRun.
 This is used by default.
 """
 from .base import BaseLogger
-from logging import Logger
+import logging
 
 
 class StandardLogger(BaseLogger):
     """
     The standard logger class for MLRun.
     """
-    def __init__(self, logger: Logger, max_level: str = "DEBUG", *args, **kwargs):
+    def __init__(self, logger: logging.Logger = logging.getLogger(__name__), max_level: str = "DEBUG", *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.logger = logger
         self.max_level = max_level
@@ -63,3 +63,15 @@ class StandardLogger(BaseLogger):
             Nothing, at least not in this case.
         """
         self.logger.error(msg, *args, **kwargs)
+
+    def setLevel(self, level: str):
+        """
+        Set the minimum level on the logger.
+        Args:
+            level: One of DEBUG, INFO, WARNING, ERROR, or FATAL
+
+        Returns:
+            Nothing
+        """
+        self.logger.setLevel(level)
+
