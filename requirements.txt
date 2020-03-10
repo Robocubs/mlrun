@@ -1,0 +1,25 @@
+# All platforms
+pip
+setuptools
+testresources
+numpy==1.18.1
+coloredlogs==14.0
+pynetworktables==2020.0.3
+pyzmq==19.0.0
+
+# Intel 64-Bit specific
+tensorflow-gpu==2.1.0; platform_machine == "x86_64"
+https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_x86_64.whl; platform_machine == "x86_64"
+opencv-python = "4.2.0.32"; platform_machine == "x86_64"
+
+# AArch64/ARM64 specific
+future==0.17.1; platform_machine == "arm64"
+mock==3.0.5; platform_machine == "arm64"
+h5py==2.9.0; platform_machine == "arm64"
+keras_preprocessing==1.0.5; platform_machine == "arm64"
+keras_applications==1.0.8; platform_machine == "arm64"
+gast==0.2.2; platform_machine == "arm64"
+futures; platform_machine == "arm64"
+protobuf; platform_machine == "arm64"
+pybind11; platform_machine == "arm64"
+https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/tensorflow_gpu-2.0.0+nv20.1-cp36-cp36m-linux_aarch64.whl; platform_machine == "arm64"
