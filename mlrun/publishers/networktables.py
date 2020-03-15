@@ -2,7 +2,7 @@
 import logging
 import sys
 from abc import ABC
-from typing import Union, Any
+from typing import Any
 
 from mlrun import strings, loader
 from mlrun.loader import ComponentType

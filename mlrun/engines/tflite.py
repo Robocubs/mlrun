@@ -6,7 +6,7 @@ import logging
 import sys
 from abc import ABC
 import os
-from typing import Callable, Union, overload
+from typing import Callable, Union
 
 import cv2  # type: ignore
 import numpy as np  # type: ignore

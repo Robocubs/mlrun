@@ -53,15 +53,18 @@ loader.load_component(ComponentType.LOGGER, logger_config["name"])(
     max_level=logger_config["max_level"]
 ).setLevel(logging.FATAL)
 
-###########################################################################
-# Start logging below, because the logger isn't loaded before this point. #
-###########################################################################
+##################################################################################################
+# All things requiring logging go below here, because the logger isn't loaded before this point. #
+##################################################################################################
 
+# Show the starting banner.
 logger.info(strings.mlrun_started)
+
+# Warn about debugging reducing performance.
 if show:
     logger.warning(strings.warning_show_debug)
 
-# Load the configured camera instance for reading.
+# Load the configured camera instance.
 if camera_config["name"] == "opencv":
     cam = loader.load_component(ComponentType.CAMERA, camera_config["name"])(
         camera=camera_config["id"],
@@ -96,7 +99,7 @@ prefix: str = publisher_config["prefix"]
 if publisher.is_connected():
     sd.putBoolean(f"{prefix}/enabled", True)
 
-# Create a new image window if visual debugging is enabled.
+# Create a new image window if debugging is enabled.
 if show:
     namedWindow("debug")
 

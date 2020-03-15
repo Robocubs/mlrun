@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildext.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/cameras/file.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/cameras/file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/engines/tensorflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tensorflow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/simple_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/util.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/engines/tflite.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tflite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/publishers/networktables.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/publishers/networktables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +176,7 @@
       <workItem from="1583590894001" duration="9752000" />
       <workItem from="1583612809101" duration="718000" />
       <workItem from="1584030164995" duration="1164000" />
-      <workItem from="1584285956651" duration="6920000" />
+      <workItem from="1584285956651" duration="8473000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -287,10 +284,14 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="27" width="946" height="1047" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582304726872" />
-    <state x="690" y="379" width="529" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1582662977218">
+    <state x="293" y="435" width="363" height="231" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1584299880886">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="690" y="379" width="529" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.1053@0.27.1920.1053" timestamp="1582662977218" />
+    <state x="293" y="435" width="363" height="231" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584299880886" />
+    <state x="690" y="379" width="519" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584299999808">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="690" y="379" width="519" height="342" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.1053@0.27.1920.1053" timestamp="1584299999808" />
     <state x="509" y="54" width="915" height="993" key="CommitChangelistDialog2" timestamp="1583527634300">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
