@@ -2,6 +2,7 @@
 import logging
 import sys
 from abc import ABC
+from typing import Union, Any
 
 from mlrun import strings, loader
 from mlrun.loader import ComponentType
@@ -11,7 +12,7 @@ from mlrun.publishers.base import BasePublisher
 from _pynetworktables import NetworkTable
 from _pynetworktables._impl.structs import ConnectionInfo
 
-NetworkTables = None
+NetworkTables = None  # type: ignore
 
 
 class NetworkTablesPublisher(BasePublisher, ABC):
@@ -38,7 +39,7 @@ class NetworkTablesPublisher(BasePublisher, ABC):
             max_level="DEBUG"
         )
 
-    def enable(self) -> NetworkTable:
+    def enable(self) -> Any:
         """
         Enable the NetworkTables client.
         Returns:
@@ -47,14 +48,14 @@ class NetworkTablesPublisher(BasePublisher, ABC):
         global NetworkTables
         self.logger.info(strings.networktables_loading)
         try:
-            from networktables import NetworkTables
+            from networktables import NetworkTables  # type: ignore
             self.logger.info(strings.networktables_successful)
         except ImportError:
             self.logger.error(strings.networktables_unsuccessful)
             sys.exit(1)
-        NetworkTables.addConnectionListener(self._connection_listener, True)
-        NetworkTables.initialize(server=f"roborio-{self.team}-frc.local")
-        self.table: NetworkTable = NetworkTables.getTable(self.table_name)
+        NetworkTables.addConnectionListener(self._connection_listener, True)  # type: ignore
+        NetworkTables.initialize(server=f"roborio-{self.team}-frc.local")  # type: ignore
+        self.table: NetworkTable = NetworkTables.getTable(self.table_name)  # type: ignore
         return self.table
 
     def disable(self):

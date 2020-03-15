@@ -6,6 +6,8 @@ import os
 import sys
 from abc import ABC
 
+import numpy as np  # type: ignore
+
 from mlrun import strings, loader
 from mlrun.loader import ComponentType
 from mlrun.config import configurations
@@ -41,7 +43,7 @@ class FileCamera(BaseCamera, ABC):
         if os.path.exists(file):
             self.logger.info(strings.opencv_loading)
             try:
-                import cv2
+                import cv2  # type: ignore
                 self.logger.info(strings.opencv_successful)
             except ImportError:
                 self.logger.error(strings.opencv_unsuccessful)
@@ -70,10 +72,11 @@ class FileCamera(BaseCamera, ABC):
         """
         self.capture.release()
 
-    def read(self) -> bytes:
+    def read(self) -> np.ndarray:
         """Return read frame."""
-        ret, frame = self.capture.read()
+        ret, frame = self.capture.read()  # type: ignore
         if ret:
             return frame
         else:
-            self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
+            self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)  # type: ignore
+            return self.capture.read()[1]  # type: ignore

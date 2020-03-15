@@ -5,16 +5,15 @@ import logging
 import os
 import sys
 from abc import ABC
-from typing import Union
 
-import numpy as np
+import numpy as np  # type: ignore
 
 from mlrun import strings, loader
 from mlrun.loader import ComponentType
 from mlrun.config import configurations
 from mlrun.cameras.base import BaseCamera
 
-cv2 = None
+cv2 = None  # type: ignore
 
 
 class OpenCVCamera(BaseCamera, ABC):
@@ -47,7 +46,7 @@ class OpenCVCamera(BaseCamera, ABC):
         if os.path.exists(f"/dev/video{camera}"):
             self.logger.info(strings.opencv_loading)
             try:
-                import cv2
+                import cv2  # type: ignore
                 self.logger.info(strings.opencv_successful)
             except ImportError:
                 self.logger.error(strings.opencv_unsuccessful)
@@ -84,7 +83,7 @@ class OpenCVCamera(BaseCamera, ABC):
 
     def read(self) -> np.ndarray:
         """Return read frame in compatible way."""
-        ret, frame = self.capture.read()
+        ret, frame = self.capture.read()  # type: ignore
         if ret:
             return frame
         else:

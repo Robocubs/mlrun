@@ -20,7 +20,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def debug(self, msg: str, *args, **kwargs):
+    def debug(self, msg: str, *args):
         """
         Generate a debug message in the logger.
 
@@ -33,7 +33,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def info(self, msg: str, *args, **kwargs):
+    def info(self, msg: str, *args):
         """
         Generate an info message in the logger.
 
@@ -46,7 +46,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def warning(self, msg: str, *args, **kwargs):
+    def warning(self, msg: str, *args):
         """
         Generate a warning message in the logger.
 
@@ -59,7 +59,7 @@ class BaseLogger(ABC):
         pass
 
     @abstractmethod
-    def error(self, msg: str, *args, **kwargs):
+    def error(self, msg: str, *args):
         """
         Generate an error message in the logger.
 

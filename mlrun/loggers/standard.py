@@ -15,7 +15,7 @@ class StandardLogger(BaseLogger):
         self.logger = logger
         self.max_level = max_level
 
-    def debug(self, msg: str, *args: str, **kwargs: int):
+    def debug(self, msg: str, *args: str):
         """
         Generate a debug message in the logger.
 
@@ -26,9 +26,9 @@ class StandardLogger(BaseLogger):
             Nothing, at least not in this case.
         """
         if self.max_level == "DEBUG":
-            self.logger.debug(msg, *args, **kwargs)
+            self.logger.debug(msg, *args)
 
-    def info(self, msg: str, *args: str, **kwargs: int):
+    def info(self, msg: str, *args: str):
         """
         Generate an info message in the logger.
 
@@ -38,9 +38,9 @@ class StandardLogger(BaseLogger):
         Returns:
             Nothing, at least not in this case.
         """
-        self.logger.info(msg, *args, **kwargs)
+        self.logger.info(msg, *args)
 
-    def warning(self, msg: str, *args: str, **kwargs: int):
+    def warning(self, msg: str, *args: str):
         """
         Generate a warning message in the logger.
 
@@ -50,9 +50,9 @@ class StandardLogger(BaseLogger):
         Returns:
             Nothing, at least not in this case.
         """
-        self.logger.warning(msg, *args, **kwargs)
+        self.logger.warning(msg, *args)
 
-    def error(self, msg: str, *args: str, **kwargs: int):
+    def error(self, msg: str, *args: str):
         """
         Generate an error message in the logger.
 
@@ -62,7 +62,7 @@ class StandardLogger(BaseLogger):
         Returns:
             Nothing, at least not in this case.
         """
-        self.logger.error(msg, *args, **kwargs)
+        self.logger.error(msg, *args)
 
     def setLevel(self, level: str):
         """

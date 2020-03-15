@@ -34,6 +34,7 @@ def get_package(package_name: str, must_implement: str) -> Dict[str, str]:
     if spec is None:
         return {}
     else:
+        assert isinstance(spec.origin, str)
         pathname = Path(spec.origin).parent
         ret = {}
         with os.scandir(pathname) as entries:
@@ -46,7 +47,7 @@ def get_package(package_name: str, must_implement: str) -> Dict[str, str]:
                         if "base" not in entry.name:
                             module_info = pyclbr.readmodule(current)
                             for value in module_info.values():
-                                if value.super[0] == must_implement:
+                                if value.super[0] == must_implement:  # type: ignore
                                     ret[current.split(".")[2]] = value.name
         return ret
 
@@ -61,6 +62,8 @@ def load_component(ctype: ComponentType, name: str) -> Callable:
     Returns:
         The Callable init method of the class.
     """
+
+    # Determine the needed parameters.
     if ctype == ComponentType.CAMERA:
         singular = "camera"
         package = "mlrun.cameras"
@@ -78,11 +81,18 @@ def load_component(ctype: ComponentType, name: str) -> Callable:
         package = "mlrun.publishers"
         base = "BasePublisher"
 
+    # Prevent importing the base class.
     if name == "base":
         raise ImportError(strings.error_base_import.format(component=singular))
+
+    # Search for the correct package.
     components = get_package(package, base)
+
+    # Enumerate over returned packages.
     for key, value in components.items():
+        # If the name of the component we are searching for is matched,
+        # import it and return its main module.
         if key == name:
-            module = __import__(package + f".{key}", fromlist=[value])
+            module = __import__(f"{package}.{key}", fromlist=[value])
             return getattr(module, value)
     raise ImportError(strings.error_component_not_found.format(component=singular, name=name))

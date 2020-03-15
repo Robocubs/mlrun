@@ -8,14 +8,15 @@ from abc import ABC
 import logging
 from typing import List
 
-import cv2
+import cv2  # type: ignore
+import numpy as np  # type: ignore
 
 from mlrun import strings, loader
 from mlrun.config import configurations
 from mlrun.loader import ComponentType
 from mlrun.engines.base import BaseEngine
 
-tf = None
+tf = None  # type: ignore
 
 
 class TensorFlowEngine(BaseEngine, ABC):
@@ -39,7 +40,7 @@ class TensorFlowEngine(BaseEngine, ABC):
             logger=logging.getLogger("tf"),
             max_level="DEBUG"
         )
-        os.environ.putenv("TF_CPP_MIN_LOG_LEVEL", "3")
+        os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
         if os.path.exists(path + "/saved_model.pb"):
             self.logger.info(strings.tensorflow_model_present)
             self.model_path = path
@@ -49,7 +50,7 @@ class TensorFlowEngine(BaseEngine, ABC):
         # Disable TensorFlow deprecation warnings.
         try:
             # noinspection PyUnresolvedReferences
-            from tensorflow.python.util import deprecation
+            from tensorflow.python.util import deprecation  # type: ignore
             deprecation._PRINT_DEPRECATION_WARNINGS = False
         except ImportError:
             pass
@@ -57,12 +58,12 @@ class TensorFlowEngine(BaseEngine, ABC):
         try:
             # TensorFlow 2.x is a bear to deal with.
             # noinspection PyUnresolvedReferences
-            import tensorflow.compat.v1 as tf
+            import tensorflow.compat.v1 as tf  # type: ignore
         except ImportError:
             self.logger.error(strings.tensorflow_error)
             sys.exit(1)
-        self.graph = tf.Graph()
-        self.session = tf.Session(graph=self.graph)
+        self.graph = tf.Graph()  # type: ignore
+        self.session = tf.Session(graph=self.graph)  # type:ignore
 
     def enable(self):
         """
@@ -84,7 +85,7 @@ class TensorFlowEngine(BaseEngine, ABC):
         """
         self.session.close()
 
-    def infer(self, image: bytes) -> List:
+    def infer(self, image: np.ndarray) -> List:
         """
         Infer on a byte-encoded image.
         Args:
@@ -93,6 +94,7 @@ class TensorFlowEngine(BaseEngine, ABC):
         Returns:
             A list containing the raw TensorFlow output.
         """
+        image = cv2.imencode(image)[1].tobytes()
         return list(zip(*[i.tolist()[0] for i in self.session.run(
             ["detection_scores:0", "detection_boxes:0"],
             feed_dict={

@@ -13,11 +13,11 @@ class BasePublisher(ABC):
         pass
 
     @abstractmethod
-    def enable(self, *args, **kwargs) -> Union[Callable, NetworkTable]:
+    def enable(self) -> Union[Callable, NetworkTable]:
         """Enable your publisher here."""
         pass
 
     @abstractmethod
-    def disable(self, *args, **kwargs):
+    def disable(self):
         """Disable your publisher here."""
         pass

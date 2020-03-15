@@ -2,17 +2,12 @@
 pip
 setuptools
 testresources
-numpy==1.18.1
+Cython
 coloredlogs==14.0
 pynetworktables==2020.0.3
-pyzmq==19.0.0
-
-# Intel 64-Bit specific
-tensorflow-gpu==2.1.0; platform_machine == "x86_64"
-https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_x86_64.whl; platform_machine == "x86_64"
-opencv-python = "4.2.0.32"; platform_machine == "x86_64"
 
 # AArch64/ARM64 specific
+numpy-aarch64; platform_machine == "arm64"
 future==0.17.1; platform_machine == "arm64"
 mock==3.0.5; platform_machine == "arm64"
 h5py==2.9.0; platform_machine == "arm64"

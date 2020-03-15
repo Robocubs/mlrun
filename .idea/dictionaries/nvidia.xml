@@ -27,6 +27,7 @@
       <w>levelname</w>
       <w>libedgetpu</w>
       <w>mlrun</w>
+      <w>mypy</w>
       <w>ndarray</w>
       <w>networktables</w>
       <w>nify</w>

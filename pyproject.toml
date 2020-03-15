@@ -14,6 +14,7 @@ pyzmq = "19.0.0"
 tensorflow-gpu = "2.1.0"
 tflite-runtime = { url = "https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_x86_64.whl", markers = "platform_machine == 'x86_64'" }
 opencv-python = "4.2.0.32"
+typing-extensions = "^3.7.4"
 
 [build-system]
 requires = ["poetry>=0.12"]

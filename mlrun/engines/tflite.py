@@ -6,10 +6,10 @@ import logging
 import sys
 from abc import ABC
 import os
-from typing import Callable, Union
+from typing import Callable, Union, overload
 
-import cv2
-import numpy as np
+import cv2  # type: ignore
+import numpy as np  # type: ignore
 
 from mlrun import strings, loader
 from mlrun.config import configurations
@@ -57,9 +57,9 @@ class TFLiteEngine(BaseEngine, ABC):
         # Attempt to load TFLite and the appropriate delegate.
         try:
             if self.tpu:
-                from tflite_runtime.interpreter import Interpreter, load_delegate
+                from tflite_runtime.interpreter import Interpreter, load_delegate  # type: ignore
             else:
-                from tflite_runtime.interpreter import Interpreter
+                from tflite_runtime.interpreter import Interpreter  # type: ignore
         except ImportError:
             self.logger.error(strings.tflite_not_found)
             sys.exit(1)
@@ -96,13 +96,13 @@ class TFLiteEngine(BaseEngine, ABC):
         image = np.expand_dims(
             cv2.resize(
                 image,
-                (self.image_size[0], self.image_size[1])
-            )[:, :, ::-1],
+                (self.image_size[0], self.image_size[1])  # type: ignore
+            )[:, :, ::-1],  # type: ignore
             axis=0
-        )
-        self.interpreter.set_tensor(self.input_details[0]["index"], image)
-        self.interpreter.invoke()
+        )  # type: ignore
+        self.interpreter.set_tensor(self.input_details[0]["index"], image)  # type: ignore
+        self.interpreter.invoke()  # type: ignore
         return list(zip(*[
-            self.interpreter.get_tensor(self.output_details[2]["index"])[0],
-            self.interpreter.get_tensor(self.output_details[0]["index"])[0]
+            self.interpreter.get_tensor(self.output_details[2]["index"])[0],  # type: ignore
+            self.interpreter.get_tensor(self.output_details[0]["index"])[0]  # type: ignore
         ]))

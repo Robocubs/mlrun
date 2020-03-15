@@ -3,8 +3,8 @@ Simple utilities that can't be optimized using Cython.
 """
 from typing import Callable
 import json
-import cv2
-import numpy as np
+import cv2  # type: ignore
+import numpy as np  # type: ignore
 
 
 def publish(message: dict, publish_enabled: bool, key: str, publisher: Callable[[str, str], None], debug_enabled: bool,

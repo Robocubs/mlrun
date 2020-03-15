@@ -6,7 +6,9 @@ and executes it with a camera input.
 """
 
 # Global modules
-import pyximport
+import pyximport  # type: ignore
+
+from mlrun.typings import LoggerConfiguration, CameraConfiguration, EngineConfiguration, PublisherConfiguration
 
 pyximport.install(language_level=3)
 
@@ -17,7 +19,7 @@ import sys
 from cv2 import getTickFrequency, getTickCount, namedWindow, destroyAllWindows  # type: ignore
 
 # Local imports
-from mlrun import strings, config, loader, util, simple_util
+from mlrun import strings, config, loader, util, simple_util  # type: ignore
 from mlrun.loader import ComponentType
 
 # Determine the number of arguments.
@@ -33,10 +35,10 @@ else:
     loaded_config = config.configurations["desktop"]
 
 # Make some aliases for readability's sake.
-logger_config: dict = loaded_config["logger"]
-camera_config: dict = loaded_config["camera"]
-engine_config: dict = loaded_config["engine"]
-publisher_config: dict = loaded_config["publisher"]
+logger_config: LoggerConfiguration = loaded_config["logger"]
+camera_config: CameraConfiguration = loaded_config["camera"]
+engine_config: EngineConfiguration = loaded_config["engine"]
+publisher_config: PublisherConfiguration = loaded_config["publisher"]
 # noinspection PyTypeChecker
 show: bool = loaded_config["show"]
 debug: bool = True if logger_config["max_level"] == "DEBUG" else False

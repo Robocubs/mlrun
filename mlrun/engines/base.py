@@ -4,6 +4,8 @@ Nothing happens here.
 """
 from abc import ABC, abstractmethod
 
+import numpy as np  # type: ignore
+
 
 class BaseEngine(ABC):
     """
@@ -26,6 +28,6 @@ class BaseEngine(ABC):
         pass
 
     @abstractmethod
-    def infer(self, *args, **kwargs):
+    def infer(self, image: np.ndarray) -> list:
         """Run inference on an object of some kind."""
         pass
