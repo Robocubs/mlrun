@@ -1,7 +1,13 @@
-# cython: language_level=3, boundscheck=False, wraparound=False, embedsignature=True, cdivision=True
-"""Utility functions for the pipeline of MLRun."""
+"""
+Simple utilities to reduce verbosity in the starting point.
+"""
+from typing import Callable
+import json
+import cv2  # type: ignore
+import numpy as np  # type: ignore
 
-cpdef list filter_confidence(list unfiltered, float min_score):
+
+def filter_confidence(unfiltered: list, min_score: float) -> list:
     """
     Filter inference results by confidence.
     Args:
@@ -18,17 +24,18 @@ cpdef list filter_confidence(list unfiltered, float min_score):
                 if unfiltered[i][0] > engine_config["min_score"]
             ]
     """
-    cdef list output = []
-    cdef int length = len(unfiltered)
-    cdef int i = 0
-    if length > 1:
+    output = []
+    length: int = len(unfiltered)
+    if length >= 1:
         for i in range(length):
             score = unfiltered[i][0]
             if score > min_score:
                 output.append(unfiltered[i])
     return output
 
-cpdef list normalize(list filtered, int camera_width, int camera_height, int inference_width, int inference_height):
+
+def normalize(filtered: list, camera_width: int, camera_height: int, inference_width: int,
+              inference_height: int) -> list:
     """
     Normalize the floating point coordinates into pixel values, and convert the inference results into
     a human-understandable format.
@@ -42,12 +49,7 @@ cpdef list normalize(list filtered, int camera_width, int camera_height, int inf
     Returns:
         The normalized values.
     """
-    cdef list output = []
-    cdef int one = 0
-    cdef int two = 0
-    cdef int three = 0
-    cdef int four = 0
-    cdef float confidence = 0.0
+    output = []
     for i in filtered:
         # This stuff is complicated. Long story short, the inference process returns values relative to
         # its expected input size, which need to be changed to the values relative to the size of the camera's
@@ -62,7 +64,8 @@ cpdef list normalize(list filtered, int camera_width, int camera_height, int inf
         ])
     return output
 
-cpdef dict humanize(list normalized, double t1, double t2, float freq):
+
+def humanize(normalized: list, t1: int, t2: int, freq: float) -> dict:
     """
     Convert processed values to readable output.
     Args:
@@ -74,12 +77,48 @@ cpdef dict humanize(list normalized, double t1, double t2, float freq):
     Returns:
         Readable dictionary.
     """
-    cdef int length = len(normalized)
-    cdef double tick_count = t2 - t1
-    cdef float inv_fps = tick_count / freq
-    cdef double fps_u = 1 / inv_fps
+    length = len(normalized)
+    fps = round(1 / ((t2 - t1) / freq), 1)
     return {
-        "fps": round(fps_u, 1),
+        "fps": fps,
         "numDetections": length,
         "detections": normalized
     }
+
+
+def publish(message: dict, publish_enabled: bool, key: str, publisher: Callable[[str, str], None], debug_enabled: bool,
+            logger: Callable[[str], None], show_enabled: bool, image: np.ndarray, avg_fps: float):
+    """
+    Publish results to NetworkTables, run debug logging and show the results in one fell swoop.
+    
+    Args:
+        message: Dictionary message.
+        publish_enabled: Enable publishing.
+        key: String key to publish message to.
+        publisher: Publisher instance.
+        debug_enabled: Enable debug logging.
+        logger: Logger instance.
+        show_enabled: Whether to show the information.
+        image: Image to write rectangles to.
+        avg_fps: Average FPS to be written in corner of frame.
+    """
+    for i in message["detections"]:
+        i[4] = round(i[4], 1)
+    jsonified: str = json.dumps(message)
+    if publish_enabled:
+        publisher(key, jsonified)
+    if debug_enabled:
+        logger(jsonified)
+    if show_enabled:
+        if len(message["detections"]) > 0:
+            for i in message["detections"]:
+                cv2.rectangle(image, (i[0], i[1]), (i[2], i[3]), (255, 0, 0), 2)
+                label = f"{i[4]}%"
+                label_size, base_line = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+                label_ymin = max(i[3], label_size[1] + 10)
+                cv2.putText(image, label, (i[2], label_ymin - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+        cv2.putText(image, f"FPS: {round(avg_fps, 1)}", (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+        cv2.imshow("debug", image)
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            raise EOFError()
+    return jsonified

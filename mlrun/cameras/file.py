@@ -79,4 +79,3 @@ class FileCamera(BaseCamera, ABC):
             return frame
         else:
             self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)  # type: ignore
-            return self.capture.read()[1]  # type: ignore

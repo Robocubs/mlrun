@@ -3,7 +3,6 @@ name = "mlrun"
 version = "1.0.0"
 description = "An easy-to-use, modular object detection inferencing engine for embedded environments."
 authors = ["Nicholas Hubbard <hubbardn95@gmail.com>"]
-build = "buildext.py"
 
 [tool.poetry.dependencies]
 python = "^3.6"

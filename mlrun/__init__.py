@@ -6,12 +6,7 @@ and executes it with a camera input.
 """
 
 # Global modules
-import pyximport  # type: ignore
-
 from mlrun.typings import LoggerConfiguration, CameraConfiguration, EngineConfiguration, PublisherConfiguration
-
-pyximport.install(language_level=3)
-
 import logging
 import sys
 
@@ -19,7 +14,7 @@ import sys
 from cv2 import getTickFrequency, getTickCount, namedWindow, destroyAllWindows  # type: ignore
 
 # Local imports
-from mlrun import strings, config, loader, util, simple_util  # type: ignore
+from mlrun import strings, config, loader, util  # type: ignore
 from mlrun.loader import ComponentType
 
 # Determine the number of arguments.
@@ -111,7 +106,7 @@ avg_fps = []
 try:
     while True:
         connected = publisher.is_connected()
-        if connected and not sd.getBoolean(f"{prefix}/enabled", False):
+        if connected and sd.getBoolean(f"{prefix}/enabled", False):
             continue
         t1 = getTickCount()
         frame = cam.read()
@@ -121,8 +116,8 @@ try:
                                     engine_config["width"], engine_config["height"])
         humanized = util.humanize(normalized, t1, getTickCount(), getTickFrequency())
         avg_fps.append(humanized["fps"])
-        simple_util.publish(humanized, connected, f"{prefix}/detections", sd.putString, debug,
-                            logger.debug, show, frame, (sum(avg_fps) / len(avg_fps)))
+        util.publish(humanized, connected, f"{prefix}/detections", sd.putString, debug,
+                     logger.debug, show, frame, (sum(avg_fps) / len(avg_fps)))
 
     logger.info(strings.stopped_nt)
     if publisher.is_connected():

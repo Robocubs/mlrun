@@ -94,7 +94,6 @@ class TensorFlowEngine(BaseEngine, ABC):
         Returns:
             A list containing the raw TensorFlow output.
         """
-        image = cv2.imencode(image)[1].tobytes()
         return list(zip(*[i.tolist()[0] for i in self.session.run(
             ["detection_scores:0", "detection_boxes:0"],
             feed_dict={
