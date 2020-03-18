@@ -5,11 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configs/desktop.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configs/jetson.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mlrun/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/engines/tflite.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/engines/tflite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/publishers/networktables.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/publishers/networktables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/strings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v1/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1/saved_model.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v1tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1tpu/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v1tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1tpu/model_edgetpu.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v1tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1tpu/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v2/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2/saved_model.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v2tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2tpu/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v2tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2tpu/model_edgetpu.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v2tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2tpu/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v3/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v3/model.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3/model.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v3/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v3tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3tpu/dict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v3tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3tpu/model_edgetpu.tflite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/models/v3tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3tpu/tflite_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +96,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/mlrun/models" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.__init__">
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.__main__">
+    <configuration name="__main__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MLRun" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -88,7 +114,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mlrun/__init__.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mlrun/__main__.py" />
       <option name="PARAMETERS" value="desktop" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,7 +147,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.__main__" />
         <item itemvalue="Python.util.pyx" />
       </list>
     </recent_temporary>
@@ -176,7 +202,9 @@
       <workItem from="1583590894001" duration="9752000" />
       <workItem from="1583612809101" duration="718000" />
       <workItem from="1584030164995" duration="1164000" />
-      <workItem from="1584285956651" duration="8473000" />
+      <workItem from="1584285956651" duration="9787000" />
+      <workItem from="1584453342453" duration="7158000" />
+      <workItem from="1584558482081" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -264,10 +292,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Tons of changes! I'm an idiot for not splitting these up into different commits..." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1584288295498">
+    <state x="555" y="215" width="800" height="671" key="#Inspections" timestamp="1584454370061">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="215" width="800" height="671" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1584288295498" />
+    <state x="555" y="215" width="800" height="671" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1584454370061" />
     <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582310867090">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -284,6 +312,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="27" width="946" height="1047" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582304726872" />
+    <state x="213" y="299" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584459062149">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="213" y="299" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584459062149" />
     <state x="293" y="435" width="363" height="231" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1584299880886">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -306,15 +338,15 @@
     </state>
     <state x="555" y="285" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582322869703" />
     <state x="555" y="285" width="800" height="530" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1583527644129" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1584285957241">
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1584558482485">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1582323175307" />
-    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584285957241" />
-    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1583515423811">
+    <state x="618" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584558482485" />
+    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1584459765045">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1583515423811" />
+    <state x="624" y="226" width="662" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1584459765045" />
     <state x="1210" y="464" width="450" height="172" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582045449417">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

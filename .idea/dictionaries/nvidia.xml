@@ -37,7 +37,9 @@
       <w>powercell</w>
       <w>preprocessing</w>
       <w>protobuf</w>
+      <w>pybind</w>
       <w>pynetworktables</w>
+      <w>pyproject</w>
       <w>pyzmq</w>
       <w>resizer</w>
       <w>robo</w>
