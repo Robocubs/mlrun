@@ -1,0 +1,13 @@
+# This file lists the requirements for all platforms.
+# Makes it easier on me to understand.
+pip
+setuptools
+testresources
+Cython
+coloredlogs==14.0
+pynetworktables==2020.0.3
+numpy==1.18.1
+coloredlogs==14.0
+typed-config==0.1.3
+toml==0.10.0
+Click==7.1.1

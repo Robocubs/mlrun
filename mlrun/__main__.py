@@ -6,7 +6,6 @@ and executes it with a camera input.
 """
 
 # Global modules
-
 import logging
 import sys
 
@@ -20,7 +19,7 @@ from mlrun import strings, config, loader, util  # type: ignore
 from mlrun.loader import ComponentType
 
 
-@click.command(name="mlrun")
+@click.command("mlrun")
 @click.argument("config_file", type=click.Path(exists=True))
 def main(config_file: str):
     """
@@ -39,21 +38,21 @@ def main(config_file: str):
     engine_config = loaded_config.engine
     publisher_config = loaded_config.publisher
     show = loaded_config.show
-    debug = True if logger_config["max_level"] == "DEBUG" else False
+    debug = True if logger_config.max_level == "DEBUG" else False
 
     #######################################################################################################
     # All things requiring configuration go below here. The configuration isn't loaded before this point. #
     #######################################################################################################
-    logger = loader.load_component(ComponentType.LOGGER, logger_config["name"])(
+    logger = loader.load_component(ComponentType.LOGGER, logger_config.name)(
         logger=logging.getLogger("mlrun"),
-        max_level=logger_config["max_level"]
+        max_level=logger_config.max_level
     )
 
     # Disable TensorFlow mixed logging. This is important because TensorFlow will start logging random Python-based
     # messages without these lines.
-    loader.load_component(ComponentType.LOGGER, logger_config["name"])(
+    loader.load_component(ComponentType.LOGGER, logger_config.name)(
         logger=logging.getLogger("tensorflow"),
-        max_level=logger_config["max_level"]
+        max_level=logger_config.max_level
     ).setLevel(logging.FATAL)
 
     ##################################################################################################
@@ -68,37 +67,37 @@ def main(config_file: str):
         logger.warning(strings.warning_show_debug)
 
     # Load the configured camera instance.
-    if camera_config["name"] == "opencv":
-        cam = loader.load_component(ComponentType.CAMERA, camera_config["name"])(
-            camera=camera_config["id"],
-            width=camera_config["width"],
-            height=camera_config["height"],
-            fps=camera_config["fps"]
+    if camera_config.name == "opencv":
+        cam = loader.load_component(ComponentType.CAMERA, camera_config.name)(
+            camera=camera_config.id,
+            width=camera_config.width,
+            height=camera_config.height,
+            fps=camera_config.fps
         )
-    elif camera_config["name"] == "file":
-        cam = loader.load_component(ComponentType.CAMERA, camera_config["name"])(
-            file=camera_config["file"]
+    elif camera_config.name == "file":
+        cam = loader.load_component(ComponentType.CAMERA, camera_config.name)(
+            file=camera_config.file
         )
 
     # Enable the camera.
     cam.enable()
 
     # Load the configured engine.
-    engine = loader.load_component(ComponentType.ENGINE, engine_config["name"])(
-        path=engine_config["path"]
+    engine = loader.load_component(ComponentType.ENGINE, engine_config.name)(
+        path=engine_config.path
     )
     # Enable the inference engine.
     engine.enable()
 
     # Load the configured publisher.
-    publisher = loader.load_component(ComponentType.PUBLISHER, publisher_config["name"])(
-        team=publisher_config["team"],
-        table=publisher_config["table"],
-        prefix=publisher_config["prefix"]
+    publisher = loader.load_component(ComponentType.PUBLISHER, publisher_config.name)(
+        team=publisher_config.team,
+        table=publisher_config.table,
+        prefix=publisher_config.prefix
     )
     # Enable the publisher.
     sd = publisher.enable()
-    prefix: str = publisher_config["prefix"]
+    prefix: str = publisher_config.prefix
     if publisher.is_connected():
         sd.putBoolean(f"{prefix}/enabled", True)
 
@@ -117,9 +116,9 @@ def main(config_file: str):
             t1 = getTickCount()
             frame = cam.read()
             inferred = engine.infer(frame)
-            filtered = util.filter_confidence(inferred, engine_config["min_score"])
-            normalized = util.normalize(filtered, camera_config["width"], camera_config["height"],
-                                        engine_config["width"], engine_config["height"])
+            filtered = util.filter_confidence(inferred, engine_config.min_score)
+            normalized = util.normalize(filtered, camera_config.width, camera_config.height,
+                                        engine_config.width, engine_config.height)
             humanized = util.humanize(normalized, t1, getTickCount(), getTickFrequency())
             avg_fps.append(humanized["fps"])
             util.publish(humanized, connected, f"{prefix}/detections", sd.putString, debug,

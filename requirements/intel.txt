@@ -1,0 +1,5 @@
+# This file lists all the dependencies that are required by Intel/AMD
+# x86_64 platforms.
+tensorflow-gpu==2.1.0
+https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_x86_64.whl
+opencv-python==4.2.0.32

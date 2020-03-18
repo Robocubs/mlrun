@@ -5,36 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="660f901e-703e-4348-a2b1-30901ed4b917" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configs/desktop.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configs/jetson.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mlrun/__main__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements/arm.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements/intel.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nvidia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/__main__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlrun/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlrun/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v1/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v1tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1tpu/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v1tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1tpu/model_edgetpu.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v1tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v1tpu/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v2/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v2tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2tpu/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v2tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2tpu/model_edgetpu.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v2tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v2tpu/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v3/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v3/model.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3/model.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v3/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v3tpu/dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3tpu/dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v3tpu/model_edgetpu.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3tpu/model_edgetpu.tflite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlrun/models/v3tpu/tflite_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/v3tpu/tflite_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlrun/typings.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +184,7 @@
       <workItem from="1584030164995" duration="1164000" />
       <workItem from="1584285956651" duration="9787000" />
       <workItem from="1584453342453" duration="7158000" />
-      <workItem from="1584558482081" duration="16000" />
+      <workItem from="1584558482081" duration="5817000" />
     </task>
     <task id="LOCAL-00001" summary="Hotfix: Add dependency qualifier to TensorFlow for x86 systems; add Cython and wheel to the list of dependencies for systems.">
       <created>1582048261007</created>
@@ -312,10 +292,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="27" width="946" height="1047" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582304726872" />
-    <state x="213" y="299" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584459062149">
+    <state x="213" y="299" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584562028218">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="213" y="299" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584459062149" />
+    <state x="213" y="299" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584562028218" />
     <state x="293" y="435" width="363" height="231" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1584299880886">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

@@ -1,8 +1,10 @@
 """Setuptools configuration for MLRun."""
-from setuptools import setup, find_packages
-from os import path
+import platform
 import sys
-import toml
+import subprocess
+from os import path
+from setuptools import setup
+import importlib.util
 
 # Error out if running on Python 2.
 if not (sys.version_info.major == 3 and sys.version_info.minor >= 6):
@@ -13,63 +15,79 @@ if not (sys.version_info.major == 3 and sys.version_info.minor >= 6):
 # Get the absolute path to our current location.
 here = path.abspath(path.dirname(__file__))
 
-# Get most of the meta information from the PyProject TOML file.
-with open(path.join(here, "pyproject.toml"), encoding="utf-8") as handle:
-    meta = toml.load(handle)
-
 # Get the long description from our README.rst file.
-with open(path.join(here, "README.rst"), encoding="utf-8") as handle:
+with open(path.join(here, "README.rst")) as handle:
     long_description = handle.read()
+
+# Get dependency lists from the requirements files.
+list_of_dependencies = []
+
+with open(path.join(here, "requirements/all.txt")) as handle:
+    all_dependencies = handle.read()
+if platform.machine() == "x86_64":
+    with open(path.join(here, "requirements/intel.txt")) as handle:
+        system_specific_dependencies = handle.read()
+elif platform.machine() == "aarch64" or platform.machine() == "arm64":
+    with open(path.join(here, "requirements/arm.txt")) as handle:
+        system_specific_dependencies = handle.read()
+
+# Process dependency lists.
+for dependency in all_dependencies.split("\n"):
+    if dependency.startswith("#") or dependency == "":
+        continue
+    list_of_dependencies.append(dependency)
+for dependency in system_specific_dependencies.split("\n"):
+    if dependency.startswith("#") or dependency == "":
+        continue
+    list_of_dependencies.append(dependency)
+
+# Install missing dependencies.
+# Some of our dependencies are direct links to wheel files.
+# Setuptools doesn't like this, so it fails. Hard.
+print("Checking and installing MLRun dependencies...")
+for dependency in list_of_dependencies:
+    # A lot of edge case handling...
+    j = dependency
+    if "==" in dependency:
+        j = dependency.split("==")[0]
+    if "tflite_runtime" in dependency:
+        j = "tflite_runtime"
+    elif "tensorflow_gpu" in dependency or "tensorflow-gpu" in dependency:
+        j = "tensorflow"
+    elif "pynetworktables" in dependency:
+        j = "networktables"
+    elif "opencv" in dependency:
+        j = "cv2"
+    elif "typed-config" in dependency:
+        j = "typedconfig"
+    elif "Click" in dependency:
+        j = "click"
+    if importlib.util.find_spec(j) is None:
+        print(f"\t - {dependency}...", end="\b")
+        subprocess.run(["python3", "-m", "pip", "install", "-I", "-q", dependency])
+        print(". done.")
+print("All dependencies are installed and up-to-date.")
+
+# Only import TOML after we know it's installed.
+import toml
+# Get most of the meta information from the PyProject TOML file.
+with open(path.join(here, "pyproject.toml")) as handle:
+    meta = toml.load(handle)
 
 # Start the setup process.
 setup(
-    name=meta.project.name,
-    version=meta.project.version,
-    description=meta.project.description,
+    name=meta["project"]["name"],
+    version=meta["project"]["version"],
+    description=meta["project"]["description"],
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url=meta.project.repository,
+    url=meta["project"]["repository"],
     author="Nicholas Hubbard",
     author_email="nhubbard@users.noreply.github.com",
-    classifiers=meta.project.classifiers,
-    keywords=meta.project.keywords,
+    classifiers=meta["project"]["classifiers"],
+    keywords=meta["project"]["keywords"],
     packages=["mlrun"],
-    python_requires=">=3.5",
-    install_requires=[
-        "pip",
-        "setuptools",
-        "testresources",
-        "coloredlogs==14.0",
-        "pynetworktables==2020.0.3",
-        "numpy==1.18.1",
-        "coloredlogs==14.0",
-        "pynetworktables==2020.0.3",
-        "typing-extensions==3.7.4",
-        "typed-config==0.1.3",
-        "toml==0.10.0",
-        "Click==7.1.1"
-    ],
-    extras_require={
-        "desktop": [
-            "tensorflow-gpu==2.1.0",
-            "https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_x86_64.whl",
-            "opencv-python==4.2.0.32"
-        ],
-        "jetson": [
-            "numpy-aarch64",
-            "future==0.17.1",
-            "mock==3.0.5",
-            "h5py==2.9.0",
-            "keras_preprocessing==1.0.5",
-            "keras_applications==1.0.8",
-            "gast==0.2.2",
-            "futures",
-            "protobuf",
-            "pybind11",
-            "https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/tensorflow_gpu-2.0.0+nv20.1-cp36-cp36m-linux_aarch64.whl",
-            "https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_aarch64.whl"
-        ]
-    },
+    python_requires=">3.5",
     entry_points="""
         [console_scripts]
         mlrun=mlrun.__main__:main

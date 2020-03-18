@@ -1,0 +1,14 @@
+# This file lists all the dependencies required by AArch64/ARM64
+# platforms.
+numpy-aarch64
+future==0.17.1
+mock==3.0.5
+h5py==2.9.0
+keras_preprocessing==1.0.5
+keras_applications==1.0.8
+gast==0.2.2
+futures
+protobuf
+pybind11
+https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/tensorflow_gpu-2.0.0+nv20.1-cp36-cp36m-linux_aarch64.whl
+https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp36-cp36m-linux_aarch64.whl
